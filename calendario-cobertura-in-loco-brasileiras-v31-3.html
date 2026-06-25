@@ -1,0 +1,3760 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CALENDÁRIO DE COBERTURA IN LOCO | Brasileiras - v31</title>
+  <style>
+    :root{
+      --bg:#f4ede3;
+      --bg2:#efe4d6;
+      --card:#fffdf8;
+      --ink:#1b1714;
+      --muted:#6d6258;
+      --text:#1b1714;
+      --soft:rgba(27,23,20,.68);
+      --line:rgba(64,50,38,.14);
+      --panel:rgba(255,255,255,.72);
+      --cream:#fff2dc;
+      --coral:#df5d4d;
+      --mustard:#c98f25;
+      --mint:#3f9b79;
+      --sky:#3f7ec8;
+      --purple:#7f64d8;
+      --rose:#b94d73;
+      --shadow:0 18px 55px rgba(74,58,41,.14);
+      --font:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      background:
+        radial-gradient(circle at 10% 0%,rgba(223,93,77,.13),transparent 30%),
+        radial-gradient(circle at 86% 8%,rgba(201,143,37,.13),transparent 30%),
+        radial-gradient(circle at 54% 100%,rgba(63,155,121,.11),transparent 34%),
+        linear-gradient(135deg,#fbf7f0,var(--bg2) 58%,#eadcc8);
+      min-height:100vh;
+    }
+    button,input,select,textarea{font:inherit}
+    .app{max-width:1480px;margin:0 auto;padding:28px}
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:32px;
+      padding:30px;
+      background:linear-gradient(135deg,rgba(255,255,255,.86),rgba(255,246,232,.72));
+      box-shadow:var(--shadow);
+    }
+    .hero:after{
+      content:"";
+      position:absolute;
+      right:-120px;
+      top:-145px;
+      width:520px;
+      height:520px;
+      border:2px solid rgba(64,50,38,.08);
+      border-radius:50%;
+    }
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:24px;
+      align-items:end;
+    }
+    .eyebrow{
+      display:inline-flex;
+      padding:7px 11px;
+      border-radius:999px;
+      background:rgba(223,93,77,.09);
+      border:1px solid rgba(223,93,77,.18);
+      color:var(--coral);
+      font-size:12px;
+      font-weight:850;
+      letter-spacing:.08em;
+      margin-bottom:16px;
+    }
+    h1{
+      margin:0;
+      max-width:900px;
+      font-size:clamp(34px,4.7vw,66px);
+      letter-spacing:-.055em;
+      line-height:.96;
+    }
+    .subtitle{
+      max-width:760px;
+      margin:16px 0 0;
+      color:var(--soft);
+      line-height:1.55;
+      font-size:16px;
+    }
+    .actions{
+      display:flex;
+      justify-content:flex-end;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:8px 11px;
+      color:var(--text);
+      background:rgba(255,255,255,.72);
+      font-size:12px;
+      font-weight:850;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .btn:hover{background:rgba(255,255,255,.94);transform:translateY(-1px)}
+    .btn.primary{color:#fff;background:var(--coral);border-color:transparent}
+    .btn.danger{color:#a2352e;background:rgba(223,93,77,.10);border-color:rgba(223,93,77,.24)}
+    .summary{
+      position:relative;
+      z-index:2;
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:repeat(7,minmax(130px,1fr));
+      gap:12px;
+    }
+    .metric{
+      min-height:92px;
+      padding:14px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(255,255,255,.66);
+    }
+    .metric small{
+      display:block;
+      margin-bottom:10px;
+      color:var(--soft);
+      font-size:12px;
+      line-height:1.25;
+      font-weight:700;
+    }
+    .metric strong{
+      display:block;
+      font-size:24px;
+      line-height:1;
+      letter-spacing:-.04em;
+    }
+    .panel{
+      margin-top:18px;
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:16px;
+      background:rgba(255,255,255,.62);
+      box-shadow:var(--shadow);
+    }
+    .tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+    .tab{
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:9px 13px;
+      background:rgba(255,255,255,.62);
+      color:var(--soft);
+      font-size:13px;
+      font-weight:850;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .tab.active{background:var(--ink);color:#fff;border-color:transparent}
+    .filters{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns:1.35fr repeat(7,minmax(118px,1fr));
+      gap:10px;
+    }
+    label{display:block;margin-bottom:6px;color:var(--muted);font-size:12px;font-weight:800}
+    input,select,textarea{
+      width:100%;
+      border:1px solid var(--line);
+      border-radius:13px;
+      padding:10px 11px;
+      color:var(--ink);
+      background:rgba(255,255,255,.82);
+      outline:none;
+    }
+    select option{color:#1b1714;background:#fff}
+    textarea{min-height:76px;resize:vertical}
+    .content{margin-top:18px}
+    .insights{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:14px;
+      margin-bottom:18px;
+    }
+    .box{
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:18px;
+      background:rgba(255,255,255,.64);
+    }
+    .box h3{margin:0 0 12px;letter-spacing:-.02em}
+    .insight-list{
+      margin:0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:9px;
+      color:var(--soft);
+      font-size:14px;
+      line-height:1.45;
+    }
+    .insight-list li{display:flex;gap:9px}
+    .dot{width:9px;height:9px;margin-top:6px;border-radius:50%;background:var(--coral);flex:0 0 auto}
+    .mini-table{width:100%;border-collapse:collapse;font-size:13px}
+    .mini-table td{padding:10px 8px;border-bottom:1px solid rgba(27,23,20,.09);color:var(--muted)}
+    .mini-table td:last-child{text-align:right;color:var(--ink);font-weight:900}
+    .month-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .month-card,.account-section{
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:18px;
+      background:rgba(255,255,255,.64);
+    }
+    .month-head,.account-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:12px;
+    }
+    .month-head h2,.account-head h2{margin:0;font-size:24px;letter-spacing:-.03em}
+    .account-head p{margin:5px 0 0;color:var(--soft);font-size:13px}
+    .load{
+      padding:7px 10px;
+      border-radius:999px;
+      background:var(--cream);
+      color:var(--ink);
+      font-size:12px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+    .load.medium{background:var(--mustard)}
+    .load.high{background:var(--coral);color:#fff}
+    .weeks{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:14px}
+    .week{height:8px;border-radius:999px;background:rgba(64,50,38,.12)}
+    .week.l1{background:rgba(139,210,173,.38)}
+    .week.l2{background:rgba(243,193,90,.70)}
+    .week.l3{background:rgba(223,93,77,.92)}
+    .stack{display:grid;gap:10px}
+    .game{
+      background:var(--card);
+      color:var(--ink);
+      border-radius:22px;
+      padding:16px;
+      box-shadow:0 14px 38px rgba(0,0,0,.18);
+      border:1px solid rgba(27,23,20,.08);
+    }
+    .game-top{display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+    .datebox{
+      flex:0 0 74px;
+      min-width:74px;
+      overflow:hidden;
+      border-radius:16px;
+      background:#1b1714;
+      color:#fff;
+      text-align:center;
+    }
+    .datebox span{
+      display:block;
+      padding:5px;
+      background:var(--coral);
+      color:#1b1714;
+      font-size:11px;
+      font-weight:950;
+      text-transform:uppercase;
+    }
+    .datebox strong{display:block;padding:8px 4px 3px;font-size:22px;line-height:1}
+    .datebox small{display:block;padding-bottom:8px;color:rgba(255,255,255,.74);font-weight:800}
+    .game-main{flex:1;min-width:0}
+    .comp{color:#bd5938;font-size:12px;font-weight:950;text-transform:uppercase;letter-spacing:.04em}
+    .game-title{margin:3px 0 6px;font-size:18px;line-height:1.15;letter-spacing:-.025em}
+    .meta{color:var(--muted);font-size:13px;line-height:1.35}
+    .score{
+      width:62px;
+      height:62px;
+      display:grid;
+      place-items:center;
+      border-radius:18px;
+      color:#fff;
+      background:linear-gradient(135deg,#78331f,var(--coral));
+      font-size:22px;
+      font-weight:950;
+      flex:0 0 auto;
+    }
+    .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+    .chip{
+      display:inline-flex;
+      border-radius:999px;
+      padding:6px 9px;
+      background:rgba(27,23,20,.08);
+      color:var(--ink);
+      font-size:11px;
+      font-weight:900;
+    }
+    .account-chip.copa{background:rgba(185,154,255,.20);color:#5b3c9c}
+    .account-chip.brasileirao{background:rgba(243,193,90,.30);color:#76530b}
+    .account-chip.brasileiras{background:rgba(224,123,157,.18);color:#8d2e50}
+    .account-chip.selecao{background:rgba(139,210,173,.24);color:#1f6c55}
+    .priority-alta,.coverage-in-loco{background:rgba(223,93,77,.14);color:#a2352e}
+    .priority-media,.status-em-analise{background:rgba(243,193,90,.30);color:#76530b}
+    .priority-baixa,.status-aprovado{background:rgba(139,210,173,.22);color:#1f6c55}
+    .status-desejado,.coverage-remota{background:rgba(131,191,255,.17);color:#245991}
+    .status-descartado{background:rgba(27,23,20,.10);color:#6b6259}
+    .coverage-hibrida{background:rgba(185,154,255,.18);color:#5b3c9c}
+    details{margin-top:10px}
+    summary{cursor:pointer;font-weight:900;color:#bd5938}
+    .detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+    .detail{padding:11px;border-radius:14px;background:rgba(27,23,20,.045)}
+    .detail small{display:block;margin-bottom:4px;color:var(--muted);font-size:11px;font-weight:850}
+    .detail p,.detail strong{margin:0;color:var(--ink);font-size:13px;line-height:1.38}
+    .bars{display:grid;gap:7px;margin-top:12px}
+    .bar-row{display:grid;grid-template-columns:170px 1fr 34px;gap:8px;align-items:center;color:var(--muted);font-size:12px}
+    .bar{height:8px;border-radius:999px;background:rgba(27,23,20,.10);overflow:hidden}
+    .bar span{display:block;height:100%;background:linear-gradient(90deg,var(--coral),var(--mustard))}
+    .card-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;border-top:1px solid rgba(27,23,20,.09);padding-top:12px}
+    .small-btn{border:0;border-radius:999px;padding:7px 10px;cursor:pointer;background:var(--ink);color:#fff;font-size:12px;font-weight:900}
+    .small-btn.light{background:rgba(27,23,20,.08);color:var(--ink)}
+    .small-btn.danger{background:rgba(223,93,77,.13);color:#a2352e}
+    .account-overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+    .account-stat{
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:15px;
+      background:rgba(255,255,255,.64);
+    }
+    .account-stat strong{display:block;margin-top:10px;font-size:26px;letter-spacing:-.04em}
+    .account-stat small{color:var(--soft);font-weight:700}
+    .account-sections{display:grid;gap:18px}
+    .account-months{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+    .account-month{
+      min-height:170px;
+      border:1px solid rgba(64,50,38,.12);
+      border-radius:18px;
+      padding:12px;
+      background:rgba(255,255,255,.48);
+    }
+    .account-month h3{margin:0 0 10px;color:var(--coral);font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+    .tiny-game{display:grid;gap:5px;padding:9px;border-radius:14px;background:rgba(255,250,241,.94);color:var(--ink);margin-bottom:8px}
+    .tiny-game strong{font-size:12px;line-height:1.18}
+    .tiny-game span{color:var(--muted);font-size:11px;line-height:1.25}
+    .ranking{display:grid;gap:12px}
+    .rank{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;background:var(--card);color:var(--ink);border-radius:22px;padding:14px}
+    .rank-num{width:50px;height:50px;display:grid;place-items:center;border-radius:16px;background:var(--ink);color:#fff;font-size:20px;font-weight:950}
+    .table-wrap{overflow-x:auto;border-radius:22px;border:1px solid var(--line);background:rgba(255,255,255,.06)}
+    table.full{min-width:1240px;width:100%;border-collapse:collapse}
+    table.full th,table.full td{padding:13px 12px;border-bottom:1px solid rgba(27,23,20,.09);text-align:left;vertical-align:top;color:var(--muted);font-size:13px}
+    table.full th{color:var(--ink);background:rgba(27,23,20,.06);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+    table.full td strong{color:var(--ink)}
+    .empty{border:1px dashed rgba(64,50,38,.22);border-radius:24px;padding:28px;text-align:center;color:var(--muted);background:rgba(255,255,255,.52)}
+    .modal{position:fixed;inset:0;display:none;place-items:center;padding:22px;background:rgba(0,0,0,.68);z-index:100}
+    .modal.open{display:grid}
+    .modal-card{width:min(980px,100%);max-height:92vh;overflow:auto;border-radius:28px;background:#fbf6ee;border:1px solid var(--line);box-shadow:var(--shadow);color:var(--ink)}
+    .modal-head{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px;border-bottom:1px solid rgba(27,23,20,.10);background:#fbf6ee;color:var(--ink)}
+    .modal-head h2{margin:0;letter-spacing:-.03em}
+    .form{padding:18px;display:grid;gap:16px}
+    .form-section{border:1px solid var(--line);border-radius:18px;padding:14px;background:rgba(255,255,255,.64)}
+    .form-section h3{margin:0 0 12px;font-size:16px}
+    .form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .form-grid.one{grid-template-columns:1fr}
+    .check-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .check-option{display:flex;align-items:center;gap:8px;padding:10px 11px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.72);color:var(--ink);font-size:13px;font-weight:800}
+    .check-option input{width:auto;accent-color:var(--coral)}
+    .range-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    input[type="range"]{padding:0;accent-color:var(--coral)}
+    .range-line{display:grid;grid-template-columns:1fr 44px;gap:10px;align-items:center}
+    .range-value{text-align:center;border-radius:10px;padding:7px;background:rgba(27,23,20,.07);font-weight:900}
+    .modal-actions{position:sticky;bottom:0;display:flex;justify-content:flex-end;gap:10px;padding:16px 18px;border-top:1px solid rgba(27,23,20,.10);background:#fbf6ee}
+    .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(24px);opacity:0;pointer-events:none;background:var(--card);color:var(--ink);border-radius:999px;padding:12px 16px;box-shadow:var(--shadow);font-weight:900;transition:all .2s ease;z-index:200}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    @media(max-width:1280px){.filters{grid-template-columns:repeat(4,1fr)}.account-months{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:1160px){.hero-inner,.insights{grid-template-columns:1fr}.actions{justify-content:flex-start}.summary{grid-template-columns:repeat(3,1fr)}.month-grid{grid-template-columns:1fr}.account-overview{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:760px){.app{padding:14px}.hero{padding:22px;border-radius:26px}.summary,.filters,.detail-grid,.form-grid,.range-grid,.check-grid,.account-overview,.account-months{grid-template-columns:1fr}.game-top{display:grid;grid-template-columns:74px 1fr}.score{grid-column:1/-1;width:100%;height:46px}.rank{grid-template-columns:1fr}}
+  
+    /* AJUSTE VISUAL V5 - claro, editorial e com acentos Brasil sem cara institucional */
+    :root {
+      --bg: #f5f1e8;
+      --bg2: #eee6d9;
+      --card: #fffdf7;
+      --ink: #172033;
+      --muted: #5f6673;
+      --text: #172033;
+      --soft: rgba(23,32,51,.68);
+      --line: rgba(23,32,51,.13);
+      --panel: rgba(255,255,255,.74);
+      --cream: #f4ead8;
+      --coral: #1f5f99;
+      --mustard: #d6a21e;
+      --mint: #2f8a68;
+      --sky: #2b6faa;
+      --purple: #6b62b7;
+      --rose: #9b4f70;
+      --shadow: 0 18px 55px rgba(40,48,64,.13);
+    }
+
+    body {
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(31,95,153,.11), transparent 30%),
+        radial-gradient(circle at 86% 8%, rgba(214,162,30,.12), transparent 30%),
+        radial-gradient(circle at 54% 100%, rgba(47,138,104,.10), transparent 34%),
+        linear-gradient(135deg, #fbf8f1, var(--bg2) 58%, #e8dccb) !important;
+    }
+
+    .hero {
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.90), rgba(250,244,235,.74)),
+        linear-gradient(90deg, rgba(31,95,153,.06), rgba(214,162,30,.05), rgba(47,138,104,.05)) !important;
+      border-color: rgba(23,32,51,.12) !important;
+    }
+
+    .hero:after,
+    .hero:before {
+      border-color: rgba(23,32,51,.075) !important;
+    }
+
+    .eyebrow {
+      color: #1f5f99 !important;
+      background: rgba(31,95,153,.075) !important;
+      border-color: rgba(31,95,153,.16) !important;
+    }
+
+    h1,
+    .month-head h2,
+    .account-head h2,
+    .account-header h2,
+    .box h3,
+    .modal-head h2,
+    .form-section h3 {
+      color: #172033 !important;
+    }
+
+    .subtitle,
+    .account-head p,
+    .account-header p,
+    .meta,
+    .tiny-game span {
+      color: #5f6673 !important;
+    }
+
+    .panel,
+    .box,
+    .month-card,
+    .account-section,
+    .account-stat,
+    .account-month,
+    .metric {
+      background: rgba(255,255,255,.68) !important;
+      border-color: rgba(23,32,51,.12) !important;
+    }
+
+    .btn {
+      color: #172033 !important;
+      background: rgba(255,255,255,.76) !important;
+      border-color: rgba(23,32,51,.13) !important;
+    }
+
+    .btn:hover {
+      background: rgba(255,255,255,.98) !important;
+    }
+
+    .btn.primary {
+      color: #fff !important;
+      background: #172033 !important;
+      border-color: transparent !important;
+    }
+
+    .btn.danger {
+      color: #8d3948 !important;
+      background: rgba(155,79,112,.08) !important;
+      border-color: rgba(155,79,112,.18) !important;
+    }
+
+    .tab {
+      color: #5f6673 !important;
+      background: rgba(255,255,255,.64) !important;
+      border-color: rgba(23,32,51,.12) !important;
+    }
+
+    .tab.active {
+      background: #172033 !important;
+      color: #fff !important;
+      border-color: transparent !important;
+    }
+
+    input,
+    select,
+    textarea {
+      color: #172033 !important;
+      background: rgba(255,255,255,.86) !important;
+      border-color: rgba(23,32,51,.14) !important;
+    }
+
+    .game,
+    .rank,
+    .tiny-game {
+      background: #fffdf7 !important;
+      color: #172033 !important;
+      border-color: rgba(23,32,51,.09) !important;
+      box-shadow: 0 14px 34px rgba(40,48,64,.11) !important;
+    }
+
+    .comp {
+      color: #1f5f99 !important;
+    }
+
+    .datebox {
+      background: #172033 !important;
+      color: #fff !important;
+    }
+
+    .datebox span {
+      background: linear-gradient(90deg, #2f8a68, #1f5f99) !important;
+      color: #fff !important;
+    }
+
+    .score {
+      background: linear-gradient(135deg, #172033, #1f5f99) !important;
+      color: #fff !important;
+    }
+
+    .load {
+      background: rgba(31,95,153,.10) !important;
+      color: #1f5f99 !important;
+    }
+
+    .load.medium {
+      background: rgba(214,162,30,.20) !important;
+      color: #846006 !important;
+    }
+
+    .load.high {
+      background: #2f8a68 !important;
+      color: #fff !important;
+    }
+
+    .week {
+      background: rgba(23,32,51,.10) !important;
+    }
+
+    .week.l1 {
+      background: rgba(47,138,104,.42) !important;
+    }
+
+    .week.l2 {
+      background: rgba(214,162,30,.62) !important;
+    }
+
+    .week.l3 {
+      background: rgba(31,95,153,.78) !important;
+    }
+
+    .account-month h3 {
+      color: #1f5f99 !important;
+    }
+
+    .chip {
+      color: #172033 !important;
+      background: rgba(23,32,51,.07) !important;
+    }
+
+    .account-chip.copa {
+      background: rgba(31,95,153,.13) !important;
+      color: #1f5f99 !important;
+    }
+
+    .account-chip.brasileirao {
+      background: rgba(214,162,30,.22) !important;
+      color: #846006 !important;
+    }
+
+    .account-chip.brasileiras {
+      background: rgba(23,32,51,.10) !important;
+      color: #172033 !important;
+    }
+
+    .account-chip.selecao {
+      background: rgba(47,138,104,.18) !important;
+      color: #1f6b50 !important;
+    }
+
+    .priority-alta,
+    .coverage-in-loco {
+      background: rgba(31,95,153,.12) !important;
+      color: #1f5f99 !important;
+    }
+
+    .priority-media,
+    .status-em-analise {
+      background: rgba(214,162,30,.22) !important;
+      color: #846006 !important;
+    }
+
+    .priority-baixa,
+    .status-aprovado {
+      background: rgba(47,138,104,.18) !important;
+      color: #1f6b50 !important;
+    }
+
+    .status-desejado,
+    .coverage-remota {
+      background: rgba(23,32,51,.08) !important;
+      color: #172033 !important;
+    }
+
+    .status-descartado {
+      background: rgba(95,102,115,.12) !important;
+      color: #5f6673 !important;
+    }
+
+    .coverage-hibrida {
+      background: rgba(107,98,183,.14) !important;
+      color: #5c4aa0 !important;
+    }
+
+    summary {
+      color: #1f5f99 !important;
+    }
+
+    .detail {
+      background: rgba(23,32,51,.045) !important;
+    }
+
+    .detail small,
+    .bar-row {
+      color: #5f6673 !important;
+    }
+
+    .bar span {
+      background: linear-gradient(90deg, #1f5f99, #2f8a68) !important;
+    }
+
+    .small-btn {
+      background: #172033 !important;
+      color: #fff !important;
+    }
+
+    .small-btn.light {
+      background: rgba(23,32,51,.08) !important;
+      color: #172033 !important;
+    }
+
+    .small-btn.danger {
+      background: rgba(155,79,112,.11) !important;
+      color: #8d3948 !important;
+    }
+
+    .rank-num {
+      background: #172033 !important;
+      color: #fff !important;
+    }
+
+    table.full th {
+      color: #172033 !important;
+      background: rgba(23,32,51,.06) !important;
+    }
+
+    table.full td {
+      color: #5f6673 !important;
+      border-bottom-color: rgba(23,32,51,.09) !important;
+    }
+
+    table.full td strong {
+      color: #172033 !important;
+    }
+
+    .empty {
+      color: #5f6673 !important;
+      background: rgba(255,255,255,.55) !important;
+      border-color: rgba(23,32,51,.18) !important;
+    }
+
+    .modal-card,
+    .modal-head,
+    .modal-actions {
+      background: #fbf8f1 !important;
+      color: #172033 !important;
+      border-color: rgba(23,32,51,.12) !important;
+    }
+
+    .form-section,
+    .check-option {
+      background: rgba(255,255,255,.70) !important;
+      color: #172033 !important;
+      border-color: rgba(23,32,51,.12) !important;
+    }
+
+    input[type="range"] {
+      accent-color: #1f5f99 !important;
+    }
+
+    .check-option input {
+      accent-color: #1f5f99 !important;
+    }
+
+  
+    /* AJUSTE V6 - cards por conta e campos a definir */
+    .game {
+      position: relative;
+      overflow: hidden;
+      background: var(--card-bg, #fffdf7) !important;
+      border-color: var(--card-border, rgba(23,32,51,.10)) !important;
+    }
+
+    .game::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--card-wash, transparent);
+      pointer-events: none;
+      opacity: .72;
+    }
+
+    .game > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .rank,
+    .tiny-game {
+      background: var(--card-bg, #fffdf7) !important;
+      border-color: var(--card-border, rgba(23,32,51,.10)) !important;
+    }
+
+    .game.account-copa,
+    .rank.account-copa,
+    .tiny-game.account-copa {
+      --card-bg: linear-gradient(135deg, #fbf8ff 0%, #efe8ff 100%);
+      --card-border: rgba(107,98,183,.26);
+      --card-wash: radial-gradient(circle at 100% 0%, rgba(107,98,183,.16), transparent 34%);
+    }
+
+    .game.account-brasileirao,
+    .rank.account-brasileirao,
+    .tiny-game.account-brasileirao {
+      --card-bg: linear-gradient(135deg, #f7fbff 0%, #e5f1ff 100%);
+      --card-border: rgba(31,95,153,.23);
+      --card-wash: radial-gradient(circle at 100% 0%, rgba(31,95,153,.14), transparent 34%);
+    }
+
+    .game.account-selecao,
+    .rank.account-selecao,
+    .tiny-game.account-selecao {
+      --card-bg: linear-gradient(135deg, #f6fff9 0%, #e3f6ea 100%);
+      --card-border: rgba(47,138,104,.25);
+      --card-wash: radial-gradient(circle at 100% 0%, rgba(47,138,104,.15), transparent 34%);
+    }
+
+    .game.account-brasileiras,
+    .rank.account-brasileiras,
+    .tiny-game.account-brasileiras {
+      --card-bg: linear-gradient(135deg, #fffdf4 0%, #fff2c9 100%);
+      --card-border: rgba(214,162,30,.28);
+      --card-wash: radial-gradient(circle at 100% 0%, rgba(214,162,30,.18), transparent 34%);
+    }
+
+    .game.account-multi,
+    .rank.account-multi,
+    .tiny-game.account-multi {
+      --card-bg: var(--multi-card-bg, linear-gradient(135deg,#fffdf7,#f3f5ff));
+      --card-border: rgba(23,32,51,.16);
+      --card-wash: radial-gradient(circle at 100% 0%, rgba(23,32,51,.05), transparent 36%);
+    }
+
+    .unknown-pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 5px 8px;
+      background: rgba(23,32,51,.07);
+      color: #5f6673;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .quick-define {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+  
+    .status-a-definir,
+    .coverage-a-definir {
+      background: rgba(95,102,115,.12) !important;
+      color: #5f6673 !important;
+    }
+
+  
+    .status-a-definir,
+    .coverage-a-definir {
+      background: rgba(95,102,115,.12) !important;
+      color: #5f6673 !important;
+    }
+  
+    /* AJUSTE V9 - etiquetas literais e fortes por perfil */
+    .game,
+    .rank,
+    .tiny-game {
+      background: #fffdf7 !important;
+      border-color: rgba(23,32,51,.10) !important;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 14px;
+    }
+
+    .profile-tag {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 8px 13px 8px 15px;
+      border-radius: 8px 18px 18px 8px;
+      color: #fff;
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 1000;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      box-shadow: 0 8px 18px rgba(23,32,51,.16);
+    }
+
+    .profile-tag::after {
+      content: "";
+      position: absolute;
+      right: 8px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.70);
+    }
+
+    .profile-tag.copa {
+      background: #6f2dbd;
+    }
+
+    .profile-tag.brasileirao {
+      background: #0057b8;
+    }
+
+    .profile-tag.brasileiras {
+      background: #ffd000;
+      color: #172033;
+    }
+
+    .profile-tag.brasileiras::after {
+      background: rgba(23,32,51,.45);
+    }
+
+    .profile-tag.selecao {
+      background: #00843d;
+    }
+
+    .profile-tag.undefined {
+      background: #7f8792;
+    }
+
+    .chip.account-chip {
+      display: none !important;
+    }
+
+    .game.account-copa,
+    .rank.account-copa,
+    .tiny-game.account-copa,
+    .game.account-brasileirao,
+    .rank.account-brasileirao,
+    .tiny-game.account-brasileirao,
+    .game.account-selecao,
+    .rank.account-selecao,
+    .tiny-game.account-selecao,
+    .game.account-brasileiras,
+    .rank.account-brasileiras,
+    .tiny-game.account-brasileiras,
+    .game.account-multi,
+    .rank.account-multi,
+    .tiny-game.account-multi {
+      --card-bg: #fffdf7 !important;
+      --multi-card-bg: #fffdf7 !important;
+      --card-border: rgba(23,32,51,.10) !important;
+      --card-wash: transparent !important;
+    }
+
+    .game::before,
+    .rank::before,
+    .tiny-game::before {
+      display: none !important;
+    }
+
+    .game > *,
+    .rank > *,
+    .tiny-game > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .tiny-game .profile-tags {
+      margin-bottom: 8px;
+      gap: 5px;
+    }
+
+    .tiny-game .profile-tag {
+      min-height: 22px;
+      padding: 6px 10px 6px 10px;
+      border-radius: 7px 14px 14px 7px;
+      font-size: 10px;
+      letter-spacing: .035em;
+    }
+
+    .tiny-game .profile-tag::after {
+      width: 4px;
+      height: 4px;
+      right: 6px;
+    }
+
+    .rank .profile-tags {
+      margin-bottom: 10px;
+    }
+
+  
+    /* AJUSTE V10 - competição neutra, botões neutros e detalhes no calendário por conta */
+    .comp {
+      color: #3f4652 !important;
+    }
+
+    .card-actions .small-btn:not(.danger) {
+      background: #3f4652 !important;
+      color: #fff !important;
+      border: 1px solid #3f4652 !important;
+    }
+
+    .card-actions .small-btn.light:not(.danger) {
+      background: #3f4652 !important;
+      color: #fff !important;
+      border: 1px solid #3f4652 !important;
+    }
+
+    .tiny-game {
+      cursor: pointer;
+      transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+    }
+
+    .tiny-game:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px rgba(40,48,64,.16) !important;
+      border-color: rgba(23,32,51,.20) !important;
+    }
+
+    .tiny-game .click-hint {
+      margin-top: 4px;
+      color: #3f4652 !important;
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .045em;
+    }
+
+    #viewModal .modal-card {
+      width: min(860px, 100%);
+    }
+
+    #viewContent {
+      padding: 18px;
+    }
+
+    #viewContent .game {
+      box-shadow: none !important;
+      margin: 0;
+    }
+
+    #viewContent details {
+      margin-top: 12px;
+    }
+
+  
+    /* AJUSTE V12 - cadastro em lote */
+    #bulkModal .modal-card {
+      width: min(1180px, 100%);
+    }
+
+    .bulk-help {
+      margin: 0 0 12px;
+      color: #5f6673;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .bulk-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .bulk-rows {
+      display: grid;
+      gap: 10px;
+    }
+
+    .bulk-row {
+      display: grid;
+      grid-template-columns: minmax(190px, 1.35fr) 92px minmax(140px, .9fr) minmax(140px, .9fr) 126px 126px 106px 82px 38px;
+      gap: 8px;
+      align-items: end;
+      padding: 10px;
+      border: 1px solid rgba(23,32,51,.12);
+      border-radius: 16px;
+      background: rgba(255,255,255,.68);
+    }
+
+    .bulk-row .field label {
+      white-space: nowrap;
+    }
+
+    .bulk-remove {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 12px;
+      background: rgba(155,79,112,.12);
+      color: #8d3948;
+      font-weight: 1000;
+      cursor: pointer;
+    }
+
+    .bulk-remove:hover {
+      background: rgba(155,79,112,.20);
+    }
+
+    .bulk-counter {
+      margin-top: 10px;
+      color: #5f6673;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    @media (max-width: 980px) {
+      .bulk-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .bulk-remove {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .bulk-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  
+    /* AJUSTE V13 - calendário por conta mais compacto */
+    .account-month h3 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .month-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 26px;
+      height: 22px;
+      padding: 0 8px;
+      border-radius: 999px;
+      background: rgba(23,32,51,.08);
+      color: #172033;
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+
+    .month-more {
+      width: 100%;
+      margin-top: 6px;
+      justify-content: center;
+      background: rgba(23,32,51,.08) !important;
+      color: #172033 !important;
+      border: 1px solid rgba(23,32,51,.10) !important;
+    }
+
+    .month-more:hover {
+      background: rgba(23,32,51,.13) !important;
+    }
+
+    .month-extra[hidden] {
+      display: none !important;
+    }
+
+  
+    /* AJUSTE V15 - períodos com vários jogos dentro da agenda */
+    .period-note{margin:0 0 12px;color:#5f6673;font-size:13px;line-height:1.45}
+    .period-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+    .period-rows{display:grid;gap:10px}
+    .period-row{display:grid;grid-template-columns:130px minmax(180px,1.3fr) 92px minmax(130px,.9fr) minmax(130px,.9fr) 38px;gap:8px;align-items:end;padding:10px;border:1px solid rgba(23,32,51,.12);border-radius:16px;background:rgba(255,255,255,.70)}
+    .period-remove{width:36px;height:36px;display:grid;place-items:center;border:0;border-radius:12px;background:rgba(155,79,112,.12);color:#8d3948;font-weight:1000;cursor:pointer}
+    .period-match-list{display:grid;gap:8px;margin-top:12px}
+    .period-match-item{display:grid;grid-template-columns:94px 1fr;gap:10px;align-items:start;padding:11px;border-radius:14px;background:rgba(23,32,51,.045);border:1px solid rgba(23,32,51,.08)}
+    .period-match-date{color:#172033;font-weight:1000;font-size:13px;line-height:1.2}
+    .period-match-date span{color:#5f6673;font-weight:900;font-size:12px}
+    .period-match-info strong{display:block;color:#172033;font-size:13px;line-height:1.25}
+    .period-match-info span{display:block;margin-top:3px;color:#5f6673;font-size:12px;line-height:1.3}
+    @media (max-width:900px){.period-row{grid-template-columns:repeat(2,minmax(0,1fr))}.period-remove{width:100%}}
+    @media (max-width:620px){.period-row,.period-match-item{grid-template-columns:1fr}}
+
+  
+    /* AJUSTE V17 - equipe com nomes e score simplificado */
+    .team-grid {
+      display: grid;
+      gap: 8px;
+    }
+
+    .team-option {
+      display: grid;
+      grid-template-columns: 22px 150px minmax(160px, 1fr);
+      gap: 8px;
+      align-items: center;
+      padding: 10px 11px;
+      border: 1px solid rgba(23,32,51,.12);
+      border-radius: 14px;
+      background: rgba(255,255,255,.72);
+      color: #172033;
+      transition: opacity .16s ease, background .16s ease;
+    }
+
+    .team-option.is-off {
+      opacity: .38;
+    }
+
+    .team-option input[type="checkbox"] {
+      width: auto;
+      accent-color: #1f5f99;
+    }
+
+    .team-option span {
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .team-option input[type="text"] {
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 12px;
+    }
+
+    .team-option input[type="text"]:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    .team-list {
+      display: grid;
+      gap: 6px;
+    }
+
+    .team-item {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .team-role {
+      font-weight: 900;
+      color: #172033;
+    }
+
+    .team-person {
+      color: #5f6673;
+    }
+
+    @media (max-width: 720px) {
+      .team-option {
+        grid-template-columns: 22px 1fr;
+      }
+
+      .team-option input[type="text"] {
+        grid-column: 1 / -1;
+      }
+    }
+
+  
+    /* AJUSTE V20 - custos detalhados */
+    .cost-breakdown {
+      margin: 16px 0 22px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .cost-panel {
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(23,32,51,.10);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: 0 12px 28px rgba(23,32,51,.06);
+    }
+
+    .cost-panel h3 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      color: #172033;
+      letter-spacing: -.01em;
+    }
+
+    .cost-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      padding: 9px 0;
+      border-top: 1px solid rgba(23,32,51,.08);
+      font-size: 13px;
+    }
+
+    .cost-row:first-of-type {
+      border-top: 0;
+    }
+
+    .cost-name {
+      min-width: 0;
+      color: #3f4652;
+      font-weight: 850;
+    }
+
+    .cost-value {
+      color: #172033;
+      font-weight: 1000;
+      white-space: nowrap;
+    }
+
+    .cost-total-line {
+      margin-top: 6px;
+      padding-top: 12px;
+      border-top: 2px solid rgba(23,32,51,.12);
+    }
+
+    .cost-note {
+      margin-top: 8px;
+      color: #7a8290;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .cost-empty {
+      color: #7a8290;
+      font-size: 13px;
+      padding: 6px 0;
+    }
+
+    @media (max-width: 860px) {
+      .cost-breakdown {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+  /* ── V24: PAINEL FINANCEIRO + SIMULADOR + CENÁRIOS ── */
+
+  /* Cartões executivos */
+  .exec-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .exec-card {
+    border-radius: 22px;
+    padding: 20px 22px;
+    border: 1px solid rgba(23,32,51,.12);
+    background: rgba(255,255,255,.72);
+    box-shadow: 0 12px 28px rgba(23,32,51,.07);
+  }
+  .exec-card.green { background: linear-gradient(135deg,#f0faf5,#d6f2e5); border-color: rgba(47,138,104,.28); }
+  .exec-card.blue  { background: linear-gradient(135deg,#f0f6ff,#d8eaff); border-color: rgba(31,95,153,.28); }
+  .exec-card.amber { background: linear-gradient(135deg,#fffbf0,#ffefc0); border-color: rgba(214,162,30,.35); }
+  .exec-card.red   { background: linear-gradient(135deg,#fff5f5,#ffd6d6); border-color: rgba(180,60,60,.25); }
+  .exec-card small { display:block; font-size:12px; font-weight:800; color:#5f6673; margin-bottom:8px; letter-spacing:.04em; text-transform:uppercase; }
+  .exec-card strong { display:block; font-size:34px; letter-spacing:-.045em; line-height:1; color:#172033; }
+  .exec-card span { display:block; margin-top:6px; font-size:12px; color:#5f6673; line-height:1.35; }
+
+  /* Barra de orçamento */
+  .budget-bar-wrap { margin-bottom: 20px; border-radius: 18px; border: 1px solid rgba(23,32,51,.10); background: rgba(255,255,255,.68); padding: 18px; }
+  .budget-bar-label { display:flex; justify-content:space-between; font-size:13px; font-weight:900; color:#172033; margin-bottom:8px; }
+  .budget-bar { height: 16px; border-radius: 999px; background: rgba(23,32,51,.09); overflow: hidden; position: relative; }
+  .budget-bar-fill { height:100%; border-radius:999px; transition: width .4s ease; background: linear-gradient(90deg,#2f8a68,#1f5f99); }
+  .budget-bar-fill.over { background: linear-gradient(90deg,#c0392b,#e74c3c); }
+  .budget-bar-pct { font-size:12px; font-weight:900; color:#5f6673; margin-top:6px; }
+
+  /* Gráfico de barras simples */
+  .bar-chart { display:grid; gap:10px; margin-bottom: 20px; }
+  .bar-chart-row { display:grid; grid-template-columns: 200px 1fr 110px; gap:10px; align-items:center; }
+  .bar-chart-label { font-size:13px; font-weight:850; color:#172033; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .bar-chart-track { height:12px; border-radius:999px; background:rgba(23,32,51,.09); overflow:hidden; }
+  .bar-chart-fill { height:100%; border-radius:999px; background: linear-gradient(90deg,#1f5f99,#2f8a68); }
+  .bar-chart-val { font-size:13px; font-weight:900; color:#172033; text-align:right; white-space:nowrap; }
+
+  /* Seção financeira */
+  .fin-section { border: 1px solid rgba(23,32,51,.10); border-radius:22px; padding:18px; background:rgba(255,255,255,.64); margin-bottom:18px; }
+  .fin-section h3 { margin:0 0 14px; font-size:16px; color:#172033; letter-spacing:-.02em; }
+
+  /* Simulador */
+  .sim-header { display:grid; grid-template-columns:1fr auto; gap:14px; align-items:start; margin-bottom:16px; }
+  .sim-budget-input { display:flex; align-items:center; gap:10px; }
+  .sim-budget-input label { font-size:13px; font-weight:800; color:#5f6673; white-space:nowrap; }
+  .sim-budget-input input { width:160px; padding:9px 12px; border-radius:12px; border:1px solid rgba(23,32,51,.15); font-size:14px; font-weight:900; }
+  .sim-total-bar { position:sticky; top:0; z-index:10; border-radius:18px; border:1px solid rgba(23,32,51,.12); background:rgba(255,255,255,.94); backdrop-filter:blur(8px); padding:14px 18px; margin-bottom:16px; box-shadow:0 8px 24px rgba(23,32,51,.09); }
+  .sim-total-numbers { display:flex; gap:24px; align-items:center; flex-wrap:wrap; margin-bottom:8px; }
+  .sim-total-numbers .sim-num { font-size:13px; }
+  .sim-total-numbers .sim-num strong { font-size:22px; font-weight:900; letter-spacing:-.035em; }
+  .sim-total-numbers .sim-num span { color:#5f6673; font-size:12px; }
+  .sim-reset { margin-left:auto; }
+
+  .sim-game-grid { display:grid; gap:10px; }
+  .sim-game-item {
+    display:grid;
+    grid-template-columns: 22px minmax(0,1fr) 120px 80px;
+    gap:10px;
+    align-items:center;
+    padding:12px 14px;
+    border-radius:16px;
+    border:1px solid rgba(23,32,51,.10);
+    background: rgba(255,255,255,.72);
+    cursor:pointer;
+    transition: border-color .15s, background .15s;
+  }
+  .sim-game-item.selected {
+    border-color: rgba(31,95,153,.45);
+    background: linear-gradient(135deg,#f0f6ff,#e4f0ff);
+  }
+  .sim-game-item input[type=checkbox] { accent-color:#1f5f99; width:16px; height:16px; cursor:pointer; }
+  .sim-game-name { font-size:13px; font-weight:850; color:#172033; line-height:1.25; }
+  .sim-game-meta { font-size:11px; color:#5f6673; margin-top:2px; }
+  .sim-game-cost { font-size:14px; font-weight:900; color:#1f5f99; text-align:right; }
+  .sim-game-date { font-size:12px; font-weight:800; color:#5f6673; }
+
+  /* Cenários */
+  .scenario-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:20px; }
+  .scenario-card { border-radius:22px; padding:20px; border:2px solid transparent; background:rgba(255,255,255,.72); cursor:pointer; transition:all .2s; }
+  .scenario-card:hover { transform:translateY(-2px); box-shadow:0 16px 32px rgba(23,32,51,.12); }
+  .scenario-card.active { border-color:#1f5f99; background:linear-gradient(135deg,#f0f6ff,#e2edff); }
+  .scenario-card.s-min.active { border-color:#c0392b; background:linear-gradient(135deg,#fff5f5,#ffe0e0); }
+  .scenario-card.s-med.active { border-color:#d6a21e; background:linear-gradient(135deg,#fffbf0,#fff0c0); }
+  .scenario-card .s-label { font-size:11px; font-weight:900; letter-spacing:.07em; text-transform:uppercase; margin-bottom:8px; }
+  .scenario-card.s-min .s-label { color:#c0392b; }
+  .scenario-card.s-med .s-label { color:#d6a21e; }
+  .scenario-card.s-rec .s-label { color:#1f5f99; }
+  .scenario-card h3 { margin:0 0 6px; font-size:18px; letter-spacing:-.03em; }
+  .scenario-card .s-total { font-size:26px; font-weight:900; letter-spacing:-.04em; margin:10px 0 4px; }
+  .scenario-card.s-min .s-total { color:#c0392b; }
+  .scenario-card.s-med .s-total { color:#d6a21e; }
+  .scenario-card.s-rec .s-total { color:#1f5f99; }
+  .scenario-card p { margin:0; font-size:12px; color:#5f6673; line-height:1.4; }
+  .scenario-detail { border-radius:18px; border:1px solid rgba(23,32,51,.10); background:rgba(255,255,255,.68); padding:18px; }
+  .scenario-detail h4 { margin:0 0 12px; font-size:15px; }
+  .scenario-line { display:grid; grid-template-columns:1fr auto; gap:10px; padding:9px 0; border-top:1px solid rgba(23,32,51,.08); font-size:13px; }
+  .scenario-line:first-of-type { border-top:0; }
+  .scenario-line .s-name { color:#3f4652; }
+  .scenario-line .s-val { font-weight:900; color:#172033; }
+  .scenario-line.covered .s-name { color:#1f6b50; }
+  .scenario-line.covered .s-val { color:#1f6b50; }
+  .scenario-line.uncovered .s-name { color:#8d3948; text-decoration:line-through; opacity:.6; }
+  .scenario-line.uncovered .s-val { color:#8d3948; opacity:.6; }
+  .scenario-note { margin-top:14px; padding-top:14px; border-top:2px solid rgba(23,32,51,.10); font-size:12px; color:#5f6673; line-height:1.45; }
+
+  /* Ajustes responsivos */
+  @media(max-width:980px){
+    .exec-cards { grid-template-columns:repeat(2,1fr); }
+    .scenario-cards { grid-template-columns:1fr; }
+  }
+  @media(max-width:640px){
+    .exec-cards { grid-template-columns:1fr; }
+    .bar-chart-row { grid-template-columns:1fr 90px; }
+    .bar-chart-label { display:none; }
+    .sim-game-item { grid-template-columns:22px 1fr 90px; }
+    .sim-game-date { display:none; }
+  }
+
+
+  /* ── V25: simulador por rede + dia da semana + controle por time/rede ── */
+  .weekday-pill {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:999px;
+    padding:3px 7px;
+    background:rgba(23,32,51,.08);
+    color:#172033;
+    font-size:10px;
+    font-weight:1000;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .sim-network-grid { display:grid; gap:14px; }
+  .sim-network-card {
+    border:1px solid rgba(23,32,51,.11);
+    border-radius:22px;
+    background:rgba(255,255,255,.70);
+    overflow:hidden;
+    box-shadow:0 12px 28px rgba(23,32,51,.06);
+  }
+  .sim-network-head {
+    width:100%;
+    border:0;
+    background:linear-gradient(135deg,rgba(255,255,255,.86),rgba(240,246,255,.74));
+    padding:16px 18px;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto auto;
+    gap:12px;
+    align-items:center;
+    cursor:pointer;
+    text-align:left;
+    color:#172033;
+  }
+  .sim-network-head:hover { background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(228,240,255,.88)); }
+  .sim-network-title strong { display:block; font-size:17px; letter-spacing:-.025em; }
+  .sim-network-title span { display:block; margin-top:3px; font-size:12px; color:#5f6673; font-weight:800; }
+  .sim-network-meta { font-size:12px; font-weight:900; color:#5f6673; white-space:nowrap; }
+  .sim-network-chevron { font-size:18px; font-weight:1000; color:#172033; }
+  .sim-network-body { padding:12px; display:grid; gap:10px; }
+  .sim-network-actions { display:flex; flex-wrap:wrap; gap:8px; padding:0 0 4px; }
+  .sim-network-card.is-collapsed .sim-network-body { display:none; }
+  .sim-network-card.is-collapsed .sim-network-chevron { transform:rotate(-90deg); }
+  .coverage-control-grid { display:grid; gap:18px; }
+  .coverage-control-card {
+    border:1px solid rgba(23,32,51,.10);
+    border-radius:22px;
+    padding:18px;
+    background:rgba(255,255,255,.66);
+  }
+  .coverage-control-head {
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:14px;
+  }
+  .coverage-control-head h3 { margin:0; font-size:18px; letter-spacing:-.025em; color:#172033; }
+  .coverage-control-head p { margin:5px 0 0; color:#5f6673; font-size:13px; line-height:1.35; }
+  .team-control-table { min-width:860px; width:100%; border-collapse:collapse; }
+  .team-control-table th, .team-control-table td {
+    padding:11px 10px;
+    border-bottom:1px solid rgba(23,32,51,.08);
+    text-align:left;
+    font-size:13px;
+    color:#5f6673;
+    vertical-align:top;
+  }
+  .team-control-table th { color:#172033; background:rgba(23,32,51,.055); font-size:11px; text-transform:uppercase; letter-spacing:.045em; }
+  .team-control-table td strong { color:#172033; }
+  .team-pill {
+    display:inline-flex;
+    align-items:center;
+    border-radius:999px;
+    padding:4px 8px;
+    background:rgba(31,95,153,.10);
+    color:#1f5f99;
+    font-size:11px;
+    font-weight:1000;
+    margin:2px 4px 2px 0;
+    white-space:nowrap;
+  }
+  @media(max-width:720px){
+    .sim-network-head { grid-template-columns:1fr; }
+    .sim-network-meta { white-space:normal; }
+  }
+
+
+
+  /* ── V28: conferência visual limpa com edição por duplo clique ── */
+  .budget-editable-value {
+    display:inline-flex;
+    align-items:center;
+    justify-content:flex-end;
+    min-width:96px;
+    padding:5px 8px;
+    margin:-5px -8px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:background .15s ease, box-shadow .15s ease;
+  }
+  .budget-editable-value:hover {
+    background:rgba(31,95,153,.08);
+    box-shadow:inset 0 0 0 1px rgba(31,95,153,.14);
+  }
+  .budget-hint {
+    margin:0 0 10px;
+    color:#5f6673;
+    font-size:12px;
+    line-height:1.4;
+  }
+  .scenario-line.auto-total .s-name::after {
+    content:"auto";
+    display:inline-flex;
+    margin-left:8px;
+    padding:3px 7px;
+    border-radius:999px;
+    background:rgba(23,32,51,.07);
+    color:#5f6673;
+    font-size:10px;
+    font-weight:950;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+  }
+
+
+
+  /* ── V29: simulador macro no painel financeiro ── */
+  .exec-editable-value {
+    display:inline-flex;
+    align-items:center;
+    padding:3px 6px;
+    margin:-3px -6px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:background .15s ease, box-shadow .15s ease;
+  }
+  .exec-editable-value:hover {
+    background:rgba(31,95,153,.08);
+    box-shadow:inset 0 0 0 1px rgba(31,95,153,.14);
+  }
+  .budget-sim-summary {
+    display:grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap:12px;
+    margin:14px 0 14px;
+  }
+  .budget-sim-card {
+    border:1px solid rgba(23,32,51,.10);
+    border-radius:18px;
+    background:rgba(255,255,255,.72);
+    padding:14px;
+  }
+  .budget-sim-card small {
+    display:block;
+    color:#5f6673;
+    font-size:11px;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:.045em;
+    margin-bottom:7px;
+  }
+  .budget-sim-card strong {
+    display:block;
+    color:#172033;
+    font-size:24px;
+    letter-spacing:-.04em;
+    line-height:1;
+  }
+  .budget-sim-card.green strong { color:#1f6b50; }
+  .budget-sim-card.red strong { color:#c0392b; }
+  .budget-sim-card.blue strong { color:#1f5f99; }
+  .budget-sim-grid {
+    display:grid;
+    gap:8px;
+  }
+  .budget-sim-row {
+    display:grid;
+    grid-template-columns: 28px minmax(0,1fr) auto minmax(118px, auto);
+    gap:10px;
+    align-items:center;
+    padding:11px 0;
+    border-top:1px solid rgba(23,32,51,.08);
+    font-size:13px;
+  }
+  .budget-sim-row:first-child { border-top:0; }
+  .budget-sim-row input[type="checkbox"] {
+    width:17px;
+    height:17px;
+    accent-color:#1f5f99;
+    cursor:pointer;
+  }
+  .budget-sim-row .s-name {
+    color:#3f4652;
+    min-width:0;
+  }
+  .budget-sim-row.selected .s-name {
+    color:#1f6b50;
+    font-weight:900;
+  }
+  .budget-sim-row.locked-out .s-name {
+    color:#8d3948;
+  }
+  .budget-status-pill {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:999px;
+    padding:5px 8px;
+    background:rgba(23,32,51,.07);
+    color:#5f6673;
+    font-size:10px;
+    font-weight:1000;
+    text-transform:uppercase;
+    letter-spacing:.035em;
+    white-space:nowrap;
+  }
+  .budget-status-pill.selected { background:rgba(47,138,104,.16); color:#1f6b50; }
+  .budget-status-pill.possible { background:rgba(31,95,153,.12); color:#1f5f99; }
+  .budget-status-pill.out { background:rgba(155,79,112,.12); color:#8d3948; }
+  .budget-sim-actions {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:12px;
+  }
+  .budget-diff-note {
+    margin-top:12px;
+    padding-top:12px;
+    border-top:1px solid rgba(23,32,51,.08);
+    color:#5f6673;
+    font-size:12px;
+    line-height:1.45;
+  }
+  @media(max-width:900px){
+    .budget-sim-summary{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .budget-sim-row{grid-template-columns:28px 1fr auto;}
+    .budget-status-pill{grid-column:2/-1;justify-self:start;}
+  }
+  @media(max-width:620px){
+    .budget-sim-summary{grid-template-columns:1fr;}
+  }
+
+  /* ── V30: GESTÃO DE VERBA ─────────────────────────────────────── */
+  .verba-bar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    border-radius: 18px;
+    border: 1px solid rgba(23,32,51,.12);
+    background: rgba(255,255,255,.95);
+    backdrop-filter: blur(10px);
+    padding: 16px 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 28px rgba(23,32,51,.10);
+  }
+  .verba-bar-inner {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .verba-bar-num {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 120px;
+  }
+  .verba-bar-num span {
+    font-size: 11px;
+    font-weight: 800;
+    color: #5f6673;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+  .verba-bar-num strong {
+    font-size: 22px;
+    font-weight: 950;
+    letter-spacing: -.03em;
+    color: #172033;
+  }
+  .verba-bar-track-wrap {
+    flex: 1;
+    min-width: 160px;
+  }
+  .verba-bar-track {
+    height: 14px;
+    border-radius: 999px;
+    background: rgba(23,32,51,.09);
+    overflow: hidden;
+  }
+  .verba-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #2f8a68, #1f5f99);
+    transition: width .4s ease;
+  }
+  .verba-bar-fill.over { background: linear-gradient(90deg, #c0392b, #e74c3c); }
+  .verba-bar-pct {
+    margin-top: 5px;
+    font-size: 11px;
+    font-weight: 900;
+    color: #5f6673;
+  }
+
+  .verba-cards-grid {
+    display: grid;
+    gap: 14px;
+  }
+
+  .verba-card {
+    border-radius: 22px;
+    border: 2px solid rgba(23,32,51,.10);
+    background: #fffdf7;
+    padding: 18px;
+    transition: border-color .2s ease, box-shadow .2s ease, opacity .2s ease;
+    box-shadow: 0 8px 24px rgba(23,32,51,.06);
+  }
+  .verba-card.verba-included {
+    border-color: rgba(31,95,153,.35);
+    background: linear-gradient(135deg, #f5faff, #edf5ff);
+    box-shadow: 0 10px 30px rgba(31,95,153,.12);
+  }
+  .verba-card.verba-excluded {
+    opacity: .7;
+  }
+
+  .verba-card-top {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .verba-checkbox-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .verba-checkbox {
+    width: 22px !important;
+    height: 22px !important;
+    accent-color: #1f5f99;
+    cursor: pointer;
+  }
+  .verba-checkbox-label {
+    font-size: 10px;
+    font-weight: 950;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: #5f6673;
+    white-space: nowrap;
+  }
+  .verba-included .verba-checkbox-label { color: #1f5f99; }
+
+  .verba-card-info { min-width: 0; }
+  .verba-comp { font-size: 11px; font-weight: 950; text-transform: uppercase; letter-spacing: .05em; color: #3f4652; margin-bottom: 3px; }
+  .verba-title { font-size: 18px; font-weight: 900; letter-spacing: -.02em; color: #172033; line-height: 1.2; margin-bottom: 4px; }
+  .verba-meta { font-size: 12px; color: #5f6673; line-height: 1.4; }
+
+  .verba-card-total {
+    text-align: right;
+    min-width: 110px;
+  }
+  .verba-total-label { font-size: 11px; font-weight: 800; color: #5f6673; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 3px; }
+  .verba-total-value { font-size: 24px; font-weight: 950; letter-spacing: -.04em; line-height: 1; }
+
+  .verba-costs-details {
+    margin-top: 14px;
+    border-top: 1px solid rgba(23,32,51,.08);
+    padding-top: 12px;
+  }
+  .verba-costs-details summary {
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 900;
+    color: #3f4652;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .verba-costs-details summary::before { content: "▶"; font-size: 9px; transition: transform .15s; }
+  .verba-costs-details[open] summary::before { transform: rotate(90deg); }
+  .verba-costs-details summary::-webkit-details-marker { display: none; }
+
+  .verba-costs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .verba-cost-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 12px;
+    background: rgba(23,32,51,.04);
+    border: 1px solid rgba(23,32,51,.07);
+    font-size: 13px;
+  }
+  .verba-cost-total {
+    grid-column: 1 / -1;
+    background: rgba(23,32,51,.07);
+    border-color: rgba(23,32,51,.12);
+    font-weight: 900;
+  }
+  .verba-cost-name { color: #5f6673; font-weight: 800; font-size: 12px; }
+  .verba-cost-val {
+    color: #172033;
+    font-weight: 900;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 8px;
+    transition: background .15s;
+  }
+  .verba-cost-val:hover { background: rgba(31,95,153,.12); }
+
+  @media(max-width:860px) {
+    .verba-card-top { grid-template-columns: auto 1fr; }
+    .verba-card-total { grid-column: 2; grid-row: 2; }
+    .verba-costs-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media(max-width:540px) {
+    .verba-card-top { grid-template-columns: 1fr; }
+    .verba-costs-grid { grid-template-columns: 1fr; }
+    .verba-bar-inner { gap: 12px; }
+  }
+
+  /* ── V31: cards de rede + grupos agrupados ───────────────────── */
+  .verba-network-summary {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .verba-net-card {
+    border-radius: 20px;
+    padding: 16px;
+    border: 1px solid rgba(23,32,51,.10);
+    background: rgba(255,255,255,.72);
+  }
+  .verba-net-card.verba-net-copa    { background: linear-gradient(135deg,#fbf8ff,#efe8ff); border-color: rgba(107,98,183,.22); }
+  .verba-net-card.verba-net-brasileirao { background: linear-gradient(135deg,#f5faff,#e5f1ff); border-color: rgba(31,95,153,.20); }
+  .verba-net-card.verba-net-selecao  { background: linear-gradient(135deg,#f4fff8,#e3f6ea); border-color: rgba(47,138,104,.22); }
+  .verba-net-card.verba-net-brasileiras { background: linear-gradient(135deg,#fffdf4,#fff2c9); border-color: rgba(214,162,30,.25); }
+  .verba-net-value {
+    font-size: 26px;
+    font-weight: 950;
+    letter-spacing: -.04em;
+    color: #172033;
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+  .verba-net-sub {
+    font-size: 11px;
+    color: #5f6673;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .verba-net-bar-wrap { margin-bottom: 4px; }
+  .verba-net-bar {
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(23,32,51,.09);
+    overflow: hidden;
+    margin-bottom: 3px;
+  }
+  .verba-net-bar-fill { height: 100%; border-radius: 999px; }
+  .verba-net-fill-copa         { background: #6b62b7; }
+  .verba-net-fill-brasileirao  { background: #1f5f99; }
+  .verba-net-fill-selecao      { background: #2f8a68; }
+  .verba-net-fill-brasileiras  { background: #c8960a; }
+  .verba-net-pct { font-size: 11px; color: #5f6673; font-weight: 800; }
+
+  .verba-groups { display: grid; gap: 28px; }
+  .verba-group {}
+  .verba-group-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(23,32,51,.08);
+  }
+  .verba-group-stats {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: #5f6673;
+    font-weight: 800;
+  }
+  .verba-group-stats strong {
+    font-size: 18px;
+    font-weight: 950;
+    color: #172033;
+    letter-spacing: -.03em;
+  }
+
+  @media(max-width:900px) {
+    .verba-network-summary { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  }
+  @media(max-width:540px) {
+    .verba-network-summary { grid-template-columns: 1fr; }
+  }
+
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">PLANNER - BRASILEIRAS - JUL/DEZ 2026 · v31</div>
+          <h1>CALENDÁRIO DE COBERTURA IN LOCO</h1>
+          <p class="subtitle">Gerencie a verba disponível na aba 💰 Gestão de Verba. Inclua ou exclua agendas, edite os custos com duplo clique e veja o saldo ao vivo.</p>
+        </div>
+        <div class="actions">
+          <button class="btn primary" id="addBtn">+ Jogo</button>
+          <button class="btn" id="bulkBtn">+ Lote</button>
+          <button class="btn" id="saveBtn">Salvar</button>
+          <button class="btn" id="exportJsonBtn">Exportar JSON</button>
+          <button class="btn" id="importJsonBtn">Importar JSON</button>
+          <button class="btn" id="exportCsvBtn">CSV</button>
+          <button class="btn" id="copySummaryBtn">Resumo</button>
+          <button class="btn danger" id="resetBtn">Restaurar</button>
+        </div>
+      </div>
+      <div class="summary" id="summary"></div>
+    </section>
+
+    <section class="panel">
+      <div class="tabs" id="tabs"></div>
+      <div class="filters">
+        <div class="filter"><label>Busca</label><input id="searchInput" type="search" placeholder="Jogo, cidade, estádio..." /></div>
+        <div class="filter"><label>Conta</label><select id="accountFilter"></select></div>
+        <div class="filter"><label>Mês</label><select id="monthFilter"></select></div>
+        <div class="filter"><label>Competição</label><select id="competitionFilter"></select></div>
+        <div class="filter"><label>Fase/rodada</label><select id="phaseFilter"></select></div>
+        <div class="filter"><label>Cidade/UF</label><select id="cityFilter"></select></div>
+        <div class="filter"><label>Prioridade</label><select id="priorityFilter"></select></div>
+        <div class="filter"><label>Cobertura</label><select id="coverageFilter"></select></div>
+        <div class="filter"><label>Status</label><select id="statusFilter"></select></div>
+      </div>
+    </section>
+
+    <section class="content" id="content"></section>
+  </main>
+
+  <div class="modal" id="modal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="modalTitle">Editar jogo</h2>
+        <button class="btn" id="closeModalBtn">Fechar</button>
+      </div>
+      <form class="form" id="gameForm">
+        <input type="hidden" id="gameId" />
+        <div class="form-section">
+          <h3>Informações principais</h3>
+          <div class="form-grid">
+            <div><label>Data</label><input type="text" id="date" placeholder="DD/MM/AAAA, AAAA-MM-DD ou A definir"></div>
+            <div><label>Horário</label><input type="text" id="time" placeholder="16:00 ou A definir"></div>
+            <div><label>Competição</label><input type="text" id="competition" placeholder="Brasileirão Feminino ou A definir"></div>
+            <div><label>Jogo/evento</label><input type="text" id="game" placeholder="Brasil x A definir"></div>
+            <div><label>Cidade/UF</label><input type="text" id="city" placeholder="São Paulo/SP ou A definir"></div>
+            <div><label>Estádio/local</label><input type="text" id="stadium"></div>
+            <div><label>Fase/rodada</label><input type="text" id="phase"></div>
+            <div><label>Status</label><select id="status"><option>a definir</option><option>desejado</option><option>em análise</option><option>aprovado</option><option>descartado</option></select></div>
+            <div><label>Tipo de cobertura</label><select id="coverage"><option>a definir</option><option>in loco</option><option>híbrida</option><option>remota</option></select></div>
+            <div><label>Prioridade</label><select id="priority"><option>alta</option><option>média</option><option>baixa</option></select></div>
+            <div><label>Pessoas necessárias</label><input type="number" min="0" id="people"></div>
+          </div>
+        </div>
+        
+
+        <div class="form-section">
+          <h3>Período e jogos da agenda</h3>
+          <p class="period-note">Use quando a agenda for um período, como uma Data FIFA. A data inicial continua no campo acima. Aqui você pode colocar a data final e listar os jogos que acontecem dentro do período.</p>
+          <div class="form-grid">
+            <div><label>Data final do período</label><input type="text" id="endDate" placeholder="DD/MM/AAAA, AAAA-MM-DD ou A definir"></div>
+          </div>
+          <div class="period-toolbar">
+            <button type="button" class="btn" id="addPeriodMatchBtn">+ Jogo do período</button>
+            <button type="button" class="btn" id="clearPeriodMatchesBtn">Limpar vazios</button>
+          </div>
+          <div class="period-rows" id="periodMatchesRows"></div>
+        </div>
+        <div class="form-section">
+          <h3>Contas/perfis</h3>
+          <div class="check-grid" id="accountChecks"></div>
+        </div>
+        <div class="form-section">
+          <h3>Equipe necessária</h3>
+          <div class="team-grid" id="teamRoles"></div>
+          <div class="form-grid one" style="margin-top:10px">
+            <div><label>Outros: especifique</label><input type="text" id="teamOther" placeholder="Ex.: logger, editor in loco, motorista..." /></div>
+          </div>
+        </div>
+                <div class="form-section">
+          <h3>Estratégia e conteúdos</h3>
+          <div class="form-grid one">
+            <div><label>Justificativa estratégica</label><textarea id="reason"></textarea></div>
+            <div><label>Conteúdos previstos</label><textarea id="plannedContent"></textarea></div>
+          </div>
+        </div>
+<div class="form-section">
+          <h3>Logística e custos</h3>
+          <div class="form-grid">
+            <div><label>Dias de viagem</label><input type="number" min="0" id="travelDays"></div>
+            <div><label>Total passagens</label><input type="number" min="0" id="flights"></div>
+            <div><label>Total hospedagem</label><input type="number" min="0" id="hotel"></div>
+            <div><label>Total alimentação</label><input type="number" min="0" id="food"></div>
+            <div><label>Total transporte</label><input type="number" min="0" id="transport"></div>
+            <div><label>Total freelancer/equipe</label><input type="number" min="0" id="freelancer"></div>
+            <div><label>Total diversos</label><input type="number" min="0" id="misc"></div>
+          </div>
+          <div class="form-grid one" style="margin-top:10px">
+            <div><label>Observações logísticas</label><textarea id="logisticsNote"></textarea></div>
+          </div>
+        </div>
+        <div class="form-section">
+          <h3>Critérios de score (0 a 10)</h3>
+          <div class="range-grid" id="criteriaFields"></div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn" id="cancelBtn">Cancelar</button>
+          <button type="submit" class="btn primary">Salvar jogo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  
+  <div class="modal" id="bulkModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2>Adicionar jogos em lote</h2>
+        <button class="btn" id="closeBulkModalBtn">Fechar</button>
+      </div>
+
+      <form class="form" id="bulkForm">
+        <div class="form-section">
+          <h3>Informações iguais para todos os jogos</h3>
+          <p class="bulk-help">
+            Use este modo quando vários jogos forem da mesma competição, no mesmo dia e na mesma fase. Depois, preencha só o que muda em cada linha.
+          </p>
+          <div class="form-grid">
+            <div class="field">
+              <label>Data</label>
+              <input type="text" id="bulkDate" placeholder="DD/MM/AAAA, AAAA-MM-DD ou A definir">
+            </div>
+            <div class="field">
+              <label>Competição</label>
+              <input type="text" id="bulkCompetition" placeholder="Ex.: Copa do Brasil Feminina">
+            </div>
+            <div class="field">
+              <label>Fase/rodada</label>
+              <input type="text" id="bulkPhase" placeholder="Ex.: Oitavas de final">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Contas/perfis</h3>
+          <div class="check-grid" id="bulkAccountChecks"></div>
+        </div>
+
+        <div class="form-section">
+          <h3>Jogos</h3>
+          <p class="bulk-help">
+            Cada linha vira um card. Linhas totalmente vazias são ignoradas.
+          </p>
+          <div class="bulk-toolbar">
+            <button type="button" class="btn" id="addBulkRowBtn">+ 1 linha</button>
+            <button type="button" class="btn" id="addTwelveBulkRowsBtn">+ 12 linhas</button>
+            <button type="button" class="btn" id="clearEmptyBulkRowsBtn">Limpar vazias</button>
+          </div>
+          <div class="bulk-rows" id="bulkRows"></div>
+          <div class="bulk-counter" id="bulkCounter">0 linhas</div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn" id="cancelBulkBtn">Cancelar</button>
+          <button type="submit" class="btn primary">Adicionar jogos</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="viewModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2>Detalhes do jogo</h2>
+        <button class="btn" id="closeViewModalBtn">Fechar</button>
+      </div>
+      <div id="viewContent"></div>
+    </div>
+  </div>
+
+  <input id="jsonFileInput" type="file" accept="application/json" style="display:none" />
+  <div class="toast" id="toast">Pronto</div>
+
+  <script>
+    const STORAGE_KEYS = ["planner_brasileiras_2026_editavel_v4","planner_brasileiras_2026_editavel_v3","planner_brasileiras_2026_editavel_v2","planner_futfem_2026_editavel_v1"];
+    const STORAGE_KEY = STORAGE_KEYS[0];
+
+    const ACCOUNT_OPTIONS = ["Copa do Brasil Feminina","Brasileirão Feminino","Brasileiras","Seleção Feminina"];
+    const SCORE_WEIGHTS = { sport:40, costBenefit:35, commercial:25 };
+    const SCORE_LABELS = { sport:"Relevância esportiva", costBenefit:"Custo-benefício", commercial:"Oportunidade comercial" };
+    const TEAM_ROLE_OPTIONS = ["Mobile/social","Fotógrafo","Videomaker","Produtor","Influenciador","Outros"];
+    const MONTHS = [["2026-07","Julho"],["2026-08","Agosto"],["2026-09","Setembro"],["2026-10","Outubro"],["2026-11","Novembro"],["2026-12","Dezembro"]];
+    const VIEWS = [["verba","💰 Gestão de Verba"],["calendario","Calendário geral"],["contas","Calendário por conta"],["ranking","Ranking"],["lista","Lista detalhada"],["cenarios","📊 Cenários"]];
+
+    const SAMPLE_GAMES = [
+      {id:1,date:"2026-07-04",time:"16:00",competition:"Brasileirão Feminino",game:"Corinthians x Palmeiras",city:"São Paulo/SP",stadium:"Neo Química Arena",phase:"Rodada decisiva",accounts:["Brasileirão Feminino","Brasileiras"],coverage:"in loco",priority:"alta",status:"em análise",reason:"Clássico com alta chance de repercussão, torcida forte e personagens para bastidor.",contentPotential:"Torcida, chegada das atletas, bastidores, react pós-jogo e cortes com personagens.",teamRoles:["Mobile/social","Fotógrafo","Videomaker"],teamOther:"",plannedContent:"Stories em tempo real, reels de torcida, álbum de fotos e vídeo pós-jogo.",travelDays:2,people:3,costs:{flights:1200,hotel:900,food:360,transport:260,freelancer:900,misc:180},logisticsNote:"Boa malha aérea e possibilidade de equipe local em São Paulo.",criteria:{sport:9,institutional:7,logistics:9,costBenefit:8,commercial:7}},
+      {id:2,date:"2026-07-12",time:"10:30",competition:"Copa do Brasil Feminina",game:"Bahia x Flamengo",city:"Salvador/BA",stadium:"Pituaçu",phase:"Oitavas de final",accounts:["Copa do Brasil Feminina","Brasileiras"],coverage:"híbrida",priority:"média",status:"desejado",reason:"Duelo com narrativa regional e clubes de grande torcida, mas custo de deslocamento precisa ser avaliado.",contentPotential:"Dia de jogo, bastidores de torcida, personagens locais e recortes de emoção.",teamRoles:["Mobile/social","Produtor"],teamOther:"",plannedContent:"Stories, reels de torcida, post de placar e cortes de personagem.",travelDays:2,people:2,costs:{flights:1450,hotel:620,food:260,transport:220,freelancer:500,misc:120},logisticsNote:"Avaliar aproveitamento com outra agenda no Nordeste.",criteria:{sport:7,institutional:7,logistics:6,costBenefit:6,commercial:6}},
+      {id:3,date:"2026-08-02",time:"18:30",competition:"Seleção Brasileira Feminina",game:"Brasil x Canadá",city:"Brasília/DF",stadium:"Mané Garrincha",phase:"Amistoso internacional",accounts:["Seleção Feminina","Brasileiras"],coverage:"in loco",priority:"alta",status:"aprovado",reason:"Seleção em capital estratégica, potencial institucional e chance de conteúdo com atletas-chave.",contentPotential:"Chegada, treino, coletiva, vestiário, torcida, bastidores e pós-jogo.",teamRoles:["Mobile/social","Fotógrafo","Produtor"],teamOther:"Editor remoto",plannedContent:"Cobertura 360, fotos em tempo real, reels de bastidor e cortes de coletiva.",travelDays:3,people:3,costs:{flights:2200,hotel:1200,food:540,transport:360,freelancer:900,misc:250},logisticsNote:"Viagem objetiva, aeroporto próximo e boa estrutura de estádio.",criteria:{sport:9,institutional:10,logistics:8,costBenefit:7,commercial:8}},
+      {id:4,date:"2026-08-09",time:"11:00",competition:"Copa do Brasil Feminina",game:"Internacional x Grêmio",city:"Porto Alegre/RS",stadium:"Beira-Rio",phase:"Quartas de final",accounts:["Copa do Brasil Feminina","Brasileiras"],coverage:"in loco",priority:"alta",status:"em análise",reason:"Gre-Nal em mata-mata entrega rivalidade, torcida, emoção e forte potencial de corte.",contentPotential:"Torcida, personagens gaúchas, pré-jogo no entorno e bastidor emocional.",teamRoles:["Mobile/social","Fotógrafo"],teamOther:"",plannedContent:"Reels de torcida, stories, álbum e react de classificação.",travelDays:2,people:2,costs:{flights:1800,hotel:720,food:360,transport:260,freelancer:700,misc:220},logisticsNote:"Avaliar produtor local para reduzir passagem.",criteria:{sport:8,institutional:7,logistics:7,costBenefit:7,commercial:7}},
+      {id:5,date:"2026-09-06",time:"17:00",competition:"Brasileirão Feminino",game:"Final do Brasileirão Feminino",city:"São Paulo/SP",stadium:"A definir",phase:"Final",accounts:["Brasileirão Feminino","Brasileiras"],coverage:"in loco",priority:"alta",status:"aprovado",reason:"Final nacional e prioridade editorial, institucional e comercial. Alto valor de arquivo e narrativa de temporada.",contentPotential:"Bastidor completo, torcida, taça, medalhas, campeãs e cortes emocionais.",teamRoles:["Mobile/social","Fotógrafo","Videomaker","Produtor"],teamOther:"Logger",plannedContent:"Cobertura em tempo real, mini-doc vertical, álbum campeão e cortes de personagem.",travelDays:3,people:4,costs:{flights:2700,hotel:1800,food:780,transport:420,freelancer:1700,misc:350},logisticsNote:"Reservar equipe com antecedência e manter plano B conforme mandante.",criteria:{sport:10,institutional:9,logistics:7,costBenefit:8,commercial:9}},
+      {id:6,date:"2026-09-15",time:"20:00",competition:"Seleção Brasileira Feminina",game:"Brasil x Japão",city:"Recife/PE",stadium:"Arena Pernambuco",phase:"Amistoso internacional",accounts:["Seleção Feminina","Brasileiras"],coverage:"in loco",priority:"alta",status:"em análise",reason:"Seleção no Nordeste, estádio com potencial de público e narrativa importante para Copa 2027.",contentPotential:"Torcida nordestina, bastidores, cidade, pré-jogo, personagens e conteúdo de pertencimento.",teamRoles:["Mobile/social","Fotógrafo","Produtor"],teamOther:"Editor remoto",plannedContent:"Stories volumosos, reels de torcida, bastidor, fotos em tempo real e vídeo institucional.",travelDays:4,people:3,costs:{flights:2600,hotel:1500,food:720,transport:420,freelancer:1000,misc:300},logisticsNote:"Avaliar dobradinha com agenda institucional no Nordeste.",criteria:{sport:9,institutional:10,logistics:6,costBenefit:7,commercial:8}},
+      {id:7,date:"2026-10-18",time:"18:00",competition:"Libertadores Feminina",game:"Final da Libertadores Feminina",city:"A definir",stadium:"A definir",phase:"Final",accounts:["Brasileiras"],coverage:"in loco",priority:"alta",status:"em análise",reason:"Decisão continental com potencial histórico, especialmente se houver clube brasileiro finalista.",contentPotential:"Bastidor internacional, taça, personagens, reação de torcida e construção de legado.",teamRoles:["Mobile/social","Fotógrafo","Videomaker"],teamOther:"Logger",plannedContent:"Cobertura em tempo real, vídeo de jornada, fotos e cortes de campeãs.",travelDays:4,people:3,costs:{flights:5200,hotel:2200,food:900,transport:520,freelancer:1400,misc:650},logisticsNote:"Criar gatilho: aprovar viagem caso clube brasileiro avance à semifinal.",criteria:{sport:10,institutional:8,logistics:3,costBenefit:6,commercial:8}},
+      {id:8,date:"2026-11-07",time:"16:00",competition:"Copa do Brasil Feminina",game:"Semifinal da Copa do Brasil Feminina",city:"Rio de Janeiro/RJ",stadium:"A definir",phase:"Semifinal volta",accounts:["Copa do Brasil Feminina","Brasileiras"],coverage:"in loco",priority:"alta",status:"desejado",reason:"Jogo de definição com chance de presença de grande clube e alto potencial de bastidor.",contentPotential:"Pré-jogo, bastidores, classificação, torcida e personagens.",teamRoles:["Mobile/social","Fotógrafo"],teamOther:"",plannedContent:"Stories, reels de bastidor, post de classificação e carrossel.",travelDays:1,people:2,costs:{flights:0,hotel:0,food:220,transport:240,freelancer:700,misc:120},logisticsNote:"Custo reduzido se houver equipe baseada no Rio.",criteria:{sport:9,institutional:8,logistics:9,costBenefit:9,commercial:7}},
+      {id:9,date:"2026-12-06",time:"17:00",competition:"Copa do Brasil Feminina",game:"Final da Copa do Brasil Feminina",city:"A definir",stadium:"A definir",phase:"Final",accounts:["Copa do Brasil Feminina","Brasileiras"],coverage:"in loco",priority:"alta",status:"desejado",reason:"Final nacional e encerramento de temporada. Prioridade alta para arquivo, narrativa e entrega institucional.",contentPotential:"Taça, bastidores, torcida, campeãs, personagem da temporada e fechamento editorial.",teamRoles:["Mobile/social","Fotógrafo","Videomaker","Produtor"],teamOther:"Logger",plannedContent:"Cobertura completa, mini-doc vertical, fotos, cortes de campeãs e resumo de temporada.",travelDays:3,people:4,costs:{flights:3200,hotel:1800,food:780,transport:420,freelancer:1700,misc:420},logisticsNote:"Planejar reserva flexível por depender do mandante.",criteria:{sport:10,institutional:9,logistics:5,costBenefit:7,commercial:9}},
+      {id:10,date:"2026-12-13",time:"11:00",competition:"Brasileiras",game:"Especial de encerramento da temporada",city:"São Paulo/SP",stadium:"Estúdio/parceiro",phase:"Conteúdo especial",accounts:["Brasileiras"],coverage:"híbrida",priority:"média",status:"desejado",reason:"Conteúdo proprietário com controle de narrativa e bom aproveitamento de convidadas.",contentPotential:"Mesa, cortes, retrospectiva, ranking, bastidores e collabs.",teamRoles:["Mobile/social","Fotógrafo","Produtor","Influenciador"],teamOther:"",plannedContent:"Mesa especial, 20 cortes, bastidores e carrossel de retrospectiva.",travelDays:2,people:4,costs:{flights:1200,hotel:800,food:360,transport:240,freelancer:1200,misc:300},logisticsNote:"Concentrar gravações no mesmo dia para reduzir custo por entrega.",criteria:{sport:3,institutional:7,logistics:8,costBenefit:9,commercial:8}}
+    ];
+
+    let games = loadGames();
+    let expandedMonths = new Set();
+    let expandedDetails = new Set();
+    let collapsedDetails = new Set();
+    let activeView = "verba";
+    let filters = {search:"",account:"todos",month:"todos",competition:"todos",phase:"todos",city:"todos",priority:"todos",coverage:"todos",status:"todos"};
+    let simSelected = new Set();
+    let simBudget = 152751;
+    let simCollapsedNetworks = new Set();
+
+    // ── GESTÃO DE VERBA (v30) ──────────────────────────────────────
+    const VERBA_STORAGE_KEY = "planner_brasileiras_verba_v30";
+    const VERBA_DEFAULTS = { total: 57495.45 };
+    function loadVerbaState() {
+      try {
+        const s = JSON.parse(localStorage.getItem(VERBA_STORAGE_KEY) || "{}");
+        return {
+          total: Number(s.total ?? VERBA_DEFAULTS.total),
+          included: new Set(Array.isArray(s.included) ? s.included : [])
+        };
+      } catch(e) {}
+      return { total: VERBA_DEFAULTS.total, included: new Set() };
+    }
+    function saveVerbaState() {
+      localStorage.setItem(VERBA_STORAGE_KEY, JSON.stringify({
+        total: verbaState.total,
+        included: [...verbaState.included]
+      }));
+    }
+    let verbaState = loadVerbaState();
+
+    const BUDGET_STORAGE_KEY = "planner_brasileiras_budget_reference_v27";
+    const BUDGET_DEFAULTS = {
+      verbaAtual: 57495.45,
+      verbaExtraDashboard: 152751.24,
+      recomendadoDashboard: 210246.69,
+      minimoOperacional: 53266.88,
+      editorFixo: 14000,
+      estudioBrasileiras: 7000,
+      brasileiraoTotal: 48800,
+      copaTotal: 32000,
+      dataFifaJunhoDashboard: 10519.69,
+      dataFifaJunhoDetalhado: 10666.88,
+      finalissima: 39220,
+      japao: 50090,
+      ferramentas: 8616
+    };
+    let BUDGET_REFERENCE = loadBudgetReference();
+    const BUDGET_SCENARIO_STORAGE_KEY = "planner_brasileiras_budget_macro_selection_v29";
+    const BUDGET_SCENARIO_DEFAULT_SELECTED = ["editorFixo","estudioBrasileiras","dataFifaJunhoDetalhado"];
+    let budgetScenarioSelected = loadBudgetScenarioSelection();
+
+    function budgetScenarioItems(){
+      return [
+        {key:"editorFixo", label:"Editor fixo jun–dez", group:"Fixos"},
+        {key:"estudioBrasileiras", label:"Estúdio Brasileiras", group:"Fixos"},
+        {key:"brasileiraoTotal", label:"Brasileirão Feminino", group:"Competições nacionais"},
+        {key:"copaTotal", label:"Copa do Brasil Feminina", group:"Competições nacionais"},
+        {key:"dataFifaJunhoDetalhado", label:"Seleção - Data FIFA junho", group:"Seleção"},
+        {key:"finalissima", label:"Seleção - Finalíssima Wembley", group:"Seleção"},
+        {key:"japao", label:"Seleção - Japão", group:"Seleção"},
+        {key:"ferramentas", label:"Ferramentas básicas", group:"Operacional"}
+      ];
+    }
+    function loadBudgetScenarioSelection(){
+      try{
+        const saved = JSON.parse(localStorage.getItem(BUDGET_SCENARIO_STORAGE_KEY)||"[]");
+        if(Array.isArray(saved)) return new Set(saved);
+      }catch(e){}
+      return new Set(BUDGET_SCENARIO_DEFAULT_SELECTED);
+    }
+    function saveBudgetScenarioSelection(){
+      localStorage.setItem(BUDGET_SCENARIO_STORAGE_KEY, JSON.stringify([...budgetScenarioSelected]));
+    }
+    function toggleBudgetScenarioItem(key){
+      if(budgetScenarioSelected.has(key)) budgetScenarioSelected.delete(key);
+      else budgetScenarioSelected.add(key);
+      saveBudgetScenarioSelection();
+      renderCurrentView();
+    }
+    function clearBudgetScenario(){
+      budgetScenarioSelected.clear();
+      saveBudgetScenarioSelection();
+      renderCurrentView();
+      showToast("Cenário limpo");
+    }
+    function selectBudgetScenario(type){
+      const keys = budgetScenarioItems().map(item=>item.key);
+      if(type==="all") budgetScenarioSelected = new Set(keys);
+      if(type==="base") budgetScenarioSelected = new Set(["editorFixo","estudioBrasileiras","dataFifaJunhoDetalhado"]);
+      if(type==="national") budgetScenarioSelected = new Set(["editorFixo","estudioBrasileiras","dataFifaJunhoDetalhado","brasileiraoTotal","copaTotal","ferramentas"]);
+      saveBudgetScenarioSelection();
+      renderCurrentView();
+      showToast("Cenário atualizado");
+    }
+
+    function normalizeBudgetReference(ref){
+      const data = {...BUDGET_DEFAULTS, ...(ref||{})};
+      if(data.editorFixo === undefined && data.fixosEditorEstudio !== undefined) data.editorFixo = Number(data.fixosEditorEstudio||0) - Number(data.estudioBrasileiras||0);
+      Object.keys(BUDGET_DEFAULTS).forEach(k=>data[k]=Number(data[k]||0));
+      data.fixosEditorEstudio = Number(data.editorFixo||0) + Number(data.estudioBrasileiras||0);
+      data.competicoesNacionais = Number(data.brasileiraoTotal||0) + Number(data.copaTotal||0);
+      return data;
+    }
+    function loadBudgetReference(){
+      try{
+        const saved = localStorage.getItem(BUDGET_STORAGE_KEY);
+        if(saved) return normalizeBudgetReference(JSON.parse(saved));
+      }catch(e){}
+      return normalizeBudgetReference(BUDGET_DEFAULTS);
+    }
+    function saveBudgetReference(silent=false){
+      BUDGET_REFERENCE = normalizeBudgetReference(BUDGET_REFERENCE);
+      localStorage.setItem(BUDGET_STORAGE_KEY, JSON.stringify(BUDGET_REFERENCE));
+      if(!silent) showToast("Orçamento de referência salvo");
+    }
+    function updateBudgetField(key,value){
+      BUDGET_REFERENCE[key] = Number(value||0);
+      saveBudgetReference(true);
+      renderCurrentView();
+    }
+    function resetBudgetReference(){
+      if(!confirm("Restaurar os valores de referência da planilha?")) return;
+      BUDGET_REFERENCE = normalizeBudgetReference(BUDGET_DEFAULTS);
+      saveBudgetReference(true);
+      renderCurrentView();
+      showToast("Referência restaurada");
+    }
+
+    const BUDGET_OBS_BRASILEIRAS = "OBS: os quadros Brasileiras de gravações independentes não estão contabilizados neste dashboard. Aqui entram coberturas de jogos, viagens, competições, Seleção, ferramentas e custos operacionais mapeados.";
+
+
+    function clone(obj){return JSON.parse(JSON.stringify(obj))}
+    function normalize(text){return String(text||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
+    function unique(arr){return [...new Set(arr.filter(Boolean))].sort((a,b)=>a.localeCompare(b,"pt-BR"))}
+    function slug(value){return normalize(value).replace(/\s+/g,"-")}
+    function isUnknown(value){const v=normalize(value).trim();return !v||v==="a definir"||v==="indefinido"||v==="tbd"}
+    function displayValue(value){return isUnknown(value)?"A definir":value}
+    function accountColor(account){const key=accountClass(account);const colors={copa:"#efe8ff",brasileirao:"#e5f1ff",selecao:"#e3f6ea",brasileiras:"#fff2c9"};return colors[key]||"#fffdf7"}
+    function cardClass(g){const accounts=Array.isArray(g.accounts)?g.accounts:[];if(accounts.length>1)return "account-multi";if(!accounts.length)return "";return "account-"+accountClass(accounts[0])}
+    function cardStyle(g){const accounts=Array.isArray(g.accounts)?g.accounts:[];if(accounts.length<=1)return "";const colors=accounts.map(accountColor);const stops=colors.map((color,index)=>{const start=Math.round(index/colors.length*100);const end=Math.round((index+1)/colors.length*100);return `${color} ${start}%, ${color} ${end}%`}).join(", ");return `style="--multi-card-bg: linear-gradient(135deg, ${stops});"`}
+    function normalizeAccountName(value){
+      const n = normalize(value);
+      if(n.includes("copa")) return "Copa do Brasil Feminina";
+      if(n.includes("brasileirao")) return "Brasileirão Feminino";
+      if(n.includes("selecao")) return "Seleção Feminina";
+      if(n.includes("brasileiras")) return "Brasileiras";
+      return ACCOUNT_OPTIONS.includes(value) ? value : "";
+    }
+    function normalizeGame(game){
+      const g = {...game};
+      g.costs = g.costs || {};
+      if(g.costs.food === undefined && g.costs.foodTransport !== undefined) g.costs.food = g.costs.foodTransport;
+      ["flights","hotel","food","transport","freelancer","misc"].forEach(k => { if(g.costs[k] === undefined) g.costs[k] = 0; });
+      if(!Array.isArray(g.accounts)){
+        if(Array.isArray(g.account)) g.accounts = g.account.map(normalizeAccountName);
+        else if(g.account) g.accounts = [normalizeAccountName(g.account)];
+        else if(g.competition) g.accounts = [normalizeAccountName(g.competition)];
+        else g.accounts = [];
+      }
+      g.accounts = unique(g.accounts.map(normalizeAccountName)).filter(Boolean);
+      g.teamNames = g.teamNames || {};
+      if(!Array.isArray(g.teamRoles)){
+        const legacy = String(g.team || "").toLowerCase();
+        const roles = [];
+        if(legacy.includes("mobile") || legacy.includes("social")) roles.push("Mobile/social");
+        if(legacy.includes("foto") || legacy.includes("câmera") || legacy.includes("camera")) roles.push("Fotógrafo");
+        if(legacy.includes("video") || legacy.includes("vídeo")) roles.push("Videomaker");
+        if(legacy.includes("produtor") || legacy.includes("produção")) roles.push("Produtor");
+        if(legacy.includes("influenciador")) roles.push("Influenciador");
+        g.teamRoles = roles;
+        g.teamOther = g.teamOther || g.team || "";
+      }
+      g.criteria = g.criteria || {};
+      Object.keys(SCORE_WEIGHTS).forEach(k => { if(g.criteria[k] === undefined) g.criteria[k] = 5; });
+      if(isUnknown(g.status)) g.status="a definir";
+      if(isUnknown(g.coverage)) g.coverage="a definir";
+      if(isUnknown(g.date)) g.date="A definir";
+      if(isUnknown(g.time)) g.time="A definir";
+      if(isUnknown(g.game)) g.game="A definir";
+      if(isUnknown(g.city)) g.city="A definir";
+      if(isUnknown(g.stadium)) g.stadium="A definir";
+      if(isUnknown(g.phase)) g.phase="A definir";
+      if(isUnknown(g.competition)) g.competition="A definir";
+      if(isUnknown(g.endDate)) g.endDate="A definir";
+      if(!Array.isArray(g.periodMatches)) g.periodMatches=[];
+      g.periodMatches=g.periodMatches.map(m=>({date:isUnknown(m?.date)?"A definir":m.date,game:isUnknown(m?.game)?"A definir":m.game,time:isUnknown(m?.time)?"A definir":m.time,city:isUnknown(m?.city)?"A definir":m.city,stadium:isUnknown(m?.stadium)?"A definir":m.stadium})).filter(m=>!(isUnknown(m.date)&&isUnknown(m.game)&&isUnknown(m.time)&&isUnknown(m.city)&&isUnknown(m.stadium)));
+      return g;
+    }
+    function loadGames(){
+      for(const key of STORAGE_KEYS){
+        try{
+          const saved = localStorage.getItem(key);
+          if(saved) return JSON.parse(saved).map(normalizeGame);
+        }catch(e){}
+      }
+      return clone(SAMPLE_GAMES);
+    }
+    function saveGames(){localStorage.setItem(STORAGE_KEY,JSON.stringify(games));showToast("Dados salvos no navegador")}
+    function parseDateObj(date){
+      if(isUnknown(date)) return null;
+      const raw=String(date||"").trim();
+
+      let m=raw.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+      if(m){
+        const y=Number(m[1]), mo=Number(m[2]), d=Number(m[3]);
+        const obj=new Date(y,mo-1,d);
+        if(obj.getFullYear()===y && obj.getMonth()===mo-1 && obj.getDate()===d) return obj;
+      }
+
+      m=raw.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/);
+      if(m){
+        const d=Number(m[1]), mo=Number(m[2]), y=Number(m[3]);
+        const obj=new Date(y,mo-1,d);
+        if(obj.getFullYear()===y && obj.getMonth()===mo-1 && obj.getDate()===d) return obj;
+      }
+
+      return null;
+    }
+    function parseDate(date){return parseDateObj(date)||new Date(2099,11,31)}
+    function monthKey(date){const d=parseDateObj(date);return d?`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`:"a-definir"}
+    function fmtDate(date){const d=parseDateObj(date);return d?d.toLocaleDateString("pt-BR",{day:"2-digit",month:"short"}).replace(".",""):"A definir"}
+    function weekdayShort(date){const d=parseDateObj(date);return d?d.toLocaleDateString("pt-BR",{weekday:"short"}).replace(".",""):"A definir"}
+    function weekdayLong(date){const d=parseDateObj(date);return d?d.toLocaleDateString("pt-BR",{weekday:"long"}):"A definir"}
+    function dateWithWeekday(date){const d=parseDateObj(date);return d?`${weekdayShort(date)} · ${fmtDate(date)}`:"A definir"}
+
+    function timeMinutes(value){
+      if(isUnknown(value)) return 99999;
+      const raw=normalize(String(value||"").trim()).replace(/\s/g,"");
+      let m=raw.match(/^(\d{1,2})[:h](\d{2})?$/);
+      if(m){
+        const h=Number(m[1]);
+        const min=Number(m[2]||0);
+        if(h>=0&&h<=23&&min>=0&&min<=59) return h*60+min;
+      }
+      m=raw.match(/^(\d{1,2})$/);
+      if(m){
+        const h=Number(m[1]);
+        if(h>=0&&h<=23) return h*60;
+      }
+      return 99999;
+    }
+    function compareGamesChronologically(a,b){
+      const da=parseDate(a.date).getTime();
+      const db=parseDate(b.date).getTime();
+      if(da!==db) return da-db;
+
+      const ta=timeMinutes(a.time);
+      const tb=timeMinutes(b.time);
+      if(ta!==tb) return ta-tb;
+
+      return String(displayValue(a.game)).localeCompare(String(displayValue(b.game)),"pt-BR");
+    }
+    function hasPeriodRange(g){const start=parseDateObj(g.date), end=parseDateObj(g.endDate);if(!end)return false;if(!start)return true;return start.getTime()!==end.getTime()}
+    function dateRangeText(g){if(hasPeriodRange(g))return `${fmtDate(g.date)} a ${fmtDate(g.endDate)}`;return fmtDate(g.date)}
+    function dateRangeWithWeekday(g){if(hasPeriodRange(g))return `${dateWithWeekday(g.date)} a ${dateWithWeekday(g.endDate)}`;return dateWithWeekday(g.date)}
+
+    function dateboxSmall(g){if(hasPeriodRange(g))return `até ${fmtDate(g.endDate)}`;return displayValue(g.time)}
+    function periodInline(g){if(!hasPeriodRange(g))return "";return `<br><strong>Período:</strong> ${escapeHtml(dateRangeText(g))}`}
+    function comparePeriodMatches(a,b){const da=parseDate(a.date).getTime(),db=parseDate(b.date).getTime();if(da!==db)return da-db;const ta=timeMinutes(a.time),tb=timeMinutes(b.time);if(ta!==tb)return ta-tb;return String(displayValue(a.game)).localeCompare(String(displayValue(b.game)),"pt-BR")}
+    function periodDetailsHtml(g){const matches=Array.isArray(g.periodMatches)?[...g.periodMatches].sort(comparePeriodMatches):[];if(!hasPeriodRange(g)&&!matches.length)return "";const header=hasPeriodRange(g)?`<div class="detail"><small>Período da agenda</small><strong>${escapeHtml(dateRangeText(g))}</strong></div>`:"";const games=matches.length?`<div class="period-match-list">${matches.map(m=>`<div class="period-match-item"><div class="period-match-date">${escapeHtml(fmtDate(m.date))}<br><span>${escapeHtml(displayValue(m.time))}</span></div><div class="period-match-info"><strong>${escapeHtml(displayValue(m.game))}</strong><span>${escapeHtml(displayValue(m.city))} · ${escapeHtml(displayValue(m.stadium))}</span></div></div>`).join("")}</div>`:"<p class='meta'>Nenhum jogo listado dentro do período.</p>";return `<div class="detail-grid" style="margin-top:10px">${header}</div><div class="detail" style="margin-top:10px"><small>Jogos dentro do período</small>${games}</div>`}
+
+    function fmtMoney(value){return new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0}).format(Number(value||0))}
+    function totalCost(g){const c=g.costs||{};return Number(c.flights||0)+Number(c.hotel||0)+Number(c.food||0)+Number(c.transport||0)+Number(c.freelancer||0)+Number(c.misc||0)}
+    function score(g){return Math.max(0,Math.min(100,Math.round(Object.entries(SCORE_WEIGHTS).reduce((sum,[k,w])=>sum+(Number((g.criteria||{})[k]||0)/10)*w,0))))}
+    function enriched(){return games.map(g=>normalizeGame({...g,score:score(g),totalCost:totalCost(g)}))}
+    function teamText(g){
+      const roles=Array.isArray(g.teamRoles)?[...g.teamRoles]:[];
+      const names=g.teamNames||{};
+      const formatted=roles.map(role=>names[role]?`${role}: ${names[role]}`:role);
+      if(g.teamOther) formatted.push(g.teamOther);
+      return formatted.length?formatted.join(", "):"Não definido";
+    }
+    function teamHtml(g){
+      const roles=Array.isArray(g.teamRoles)?[...g.teamRoles]:[];
+      const names=g.teamNames||{};
+      const items=roles.map(role=>`<div class="team-item"><span class="team-role">${escapeHtml(role)}</span>${names[role]?`<span class="team-person">· ${escapeHtml(names[role])}</span>`:""}</div>`).join("");
+      const other=g.teamOther?`<div class="team-item"><span class="team-role">Outros</span><span class="team-person">· ${escapeHtml(g.teamOther)}</span></div>`:"";
+      return items||other?`<div class="team-list">${items}${other}</div>`:"Não definido";
+    }
+    function accountsText(g){return Array.isArray(g.accounts)&&g.accounts.length?g.accounts.join(", "):"Não definido"}
+    function accountClass(account){const s=slug(account);if(s.includes("copa")) return "copa";if(s.includes("brasileirao")) return "brasileirao";if(s.includes("selecao")) return "selecao";return "brasileiras"}
+    function filteredGames(){
+      return enriched().filter(g=>{
+        const hay = normalize([g.game,g.city,g.stadium,g.competition,g.phase,accountsText(g)].join(" "));
+        return (!filters.search || hay.includes(normalize(filters.search))) &&
+          (filters.account==="todos" || (g.accounts||[]).includes(filters.account)) &&
+          (filters.month==="todos" || monthKey(g.date)===filters.month) &&
+          (filters.competition==="todos" || g.competition===filters.competition) &&
+          (filters.phase==="todos" || g.phase===filters.phase) &&
+          (filters.city==="todos" || g.city===filters.city) &&
+          (filters.priority==="todos" || g.priority===filters.priority) &&
+          (filters.coverage==="todos" || g.coverage===filters.coverage) &&
+          (filters.status==="todos" || g.status===filters.status);
+      }).sort(compareGamesChronologically)
+    }
+    function summary(items){
+      const inLoco=items.filter(g=>g.coverage==="in loco");
+      const hybrid=items.filter(g=>g.coverage==="híbrida");
+      const high=items.filter(g=>g.priority==="alta");
+      const cities=unique(items.map(g=>g.city));
+      const totalPeople=items.reduce((s,g)=>s+Number(g.people||0),0);
+      const total=items.reduce((s,g)=>s+g.totalCost,0);
+      const inLocoTotal=inLoco.reduce((s,g)=>s+g.totalCost,0);
+      const hybridTotal=hybrid.reduce((s,g)=>s+g.totalCost,0);
+      const accountCounts=ACCOUNT_OPTIONS.map(account=>({label:account,count:items.filter(g=>(g.accounts||[]).includes(account)).length})).sort((a,b)=>b.count-a.count);
+      return {totalGames:items.length,inLoco:inLoco.length,hybrid:hybrid.length,high:high.length,cities:cities.length,totalPeople,total,inLocoTotal,hybridTotal,avg:items.length?Math.round(total/items.length):0,topAccount:accountCounts[0]&&accountCounts[0].count?accountCounts[0].label+" ("+accountCounts[0].count+")":"-"};
+    }
+    function costByAccount(items){
+      const result={};
+      ACCOUNT_OPTIONS.filter(account=>account!=="Brasileiras").forEach(account=>result[account]=0);
+      items.forEach(g=>{
+        const accounts=Array.isArray(g.accounts)&&g.accounts.length?g.accounts:["Conta a definir"];
+        const billableAccounts=accounts.filter(account=>account!=="Brasileiras");
+        const split=billableAccounts.length?(Number(g.totalCost)||0)/billableAccounts.length:0;
+        billableAccounts.forEach(account=>{result[account]=(result[account]||0)+split;});
+      });
+      return result;
+    }
+
+    function costByMonth(items){
+      const result={};
+      [...MONTHS,["a-definir","A definir"]].forEach(m=>result[m[1]]=0);
+      items.forEach(g=>{
+        const key=monthKey(g.date);
+        const month=MONTHS.find(m=>m[0]===key);
+        const label=month?month[1]:"A definir";
+        result[label]=(result[label]||0)+(Number(g.totalCost)||0);
+      });
+      return result;
+    }
+
+    function costAuditAlerts(items){
+      const alerts=[];
+      items.forEach(g=>{
+        const c=g.costs||{};
+        const city=normalize(g.city);
+        const isRio=city.includes("rio de janeiro") || city==="rio/rj" || city.includes("/rj");
+        const hasTravelCost=Number(c.flights||0)>0 || Number(c.hotel||0)>0;
+        if(isRio && hasTravelCost){
+          alerts.push(`${displayValue(g.game)}: está no RJ, mas tem passagem/hospedagem preenchida. Revisar se a equipe será do Rio.`);
+        }
+        if(!isRio && g.coverage==="in loco" && g.priority==="alta" && Number(g.totalCost||0)===0){
+          alerts.push(`${displayValue(g.game)}: cobertura alta fora do RJ sem custo preenchido.`);
+        }
+      });
+      return alerts;
+    }
+
+    function renderCostRows(data){
+      const entries=Object.entries(data).filter(([_,value])=>Number(value)>0);
+      if(!entries.length) return `<div class="cost-empty">Sem custos preenchidos ainda.</div>`;
+      return entries.map(([name,value])=>`
+        <div class="cost-row">
+          <div class="cost-name">${escapeHtml(name)}</div>
+          <div class="cost-value">${fmtMoney(value)}</div>
+        </div>
+      `).join("");
+    }
+
+    function renderCostBreakdown(items){
+      const s=summary(items);
+      return `<div class="cost-breakdown">
+        <div class="cost-panel">
+          <h3>Custo por conta/rede</h3>
+          ${renderCostRows(costByAccount(items))}
+          <div class="cost-row cost-total-line">
+            <div class="cost-name">Custo total</div>
+            <div class="cost-value">${fmtMoney(s.total)}</div>
+          </div>
+          <div class="cost-note">Quando um jogo tem mais de uma conta/rede, o custo é dividido igualmente entre as contas/rede de entrega. Brasileiras não entra neste rateio.</div>
+        </div>
+        <div class="cost-panel">
+          <h3>Custo por mês</h3>
+          ${renderCostRows(costByMonth(items))}
+          <div class="cost-row cost-total-line">
+            <div class="cost-name">Custo total</div>
+            <div class="cost-value">${fmtMoney(s.total)}</div>
+          </div>
+        </div>
+      </div>`;
+    }
+
+    function renderSummary(items){
+      const s=summary(items);
+      const metrics=[["Jogos mapeados",s.totalGames],["Coberturas híbridas",s.hybrid],["Prioridade alta",s.high],["Cidades/UF",s.cities],["Custo total",fmtMoney(s.total)],["Conta com mais demandas",s.topAccount]];
+      document.getElementById("summary").innerHTML=metrics.map(m=>`<div class="metric"><small>${m[0]}</small><strong>${m[1]}</strong></div>`).join("");
+    }
+    function fillSelect(id,options,selected){const el=document.getElementById(id);el.innerHTML=options.map(o=>`<option value="${escapeHtml(o[0])}">${escapeHtml(o[1])}</option>`).join("");el.value=selected}
+    function setupFilters(){
+      const all=enriched();
+      fillSelect("accountFilter",[["todos","Todas"],...ACCOUNT_OPTIONS.map(x=>[x,x])],filters.account);
+      fillSelect("monthFilter",[["todos","Todos"],...MONTHS],filters.month);
+      fillSelect("competitionFilter",[["todos","Todas"],...unique(all.map(g=>g.competition)).map(x=>[x,x])],filters.competition);
+      fillSelect("phaseFilter",[["todos","Todas"],...unique(all.map(g=>g.phase)).map(x=>[x,x])],filters.phase);
+      fillSelect("cityFilter",[["todos","Todas"],...unique(all.map(g=>g.city)).map(x=>[x,x])],filters.city);
+      fillSelect("priorityFilter",[["todos","Todas"],["alta","Alta"],["média","Média"],["baixa","Baixa"]],filters.priority);
+      fillSelect("coverageFilter",[["todos","Todas"],["a definir","A definir"],["in loco","In loco"],["híbrida","Híbrida"],["remota","Remota"]],filters.coverage);
+      fillSelect("statusFilter",[["todos","Todos"],["a definir","A definir"],["desejado","Desejado"],["em análise","Em análise"],["aprovado","Aprovado"],["descartado","Descartado"]],filters.status);
+      document.getElementById("searchInput").value=filters.search;
+      const map={accountFilter:"account",monthFilter:"month",competitionFilter:"competition",phaseFilter:"phase",cityFilter:"city",priorityFilter:"priority",coverageFilter:"coverage",statusFilter:"status"};
+      Object.entries(map).forEach(([id,key])=>{document.getElementById(id).onchange=e=>{filters[key]=e.target.value;render()}});
+      document.getElementById("searchInput").oninput=e=>{filters.search=e.target.value;render()};
+    }
+    function renderTabs(){
+      document.getElementById("tabs").innerHTML=VIEWS.map(v=>`<button class="tab ${activeView===v[0]?"active":""}" data-view="${v[0]}">${v[1]}</button>`).join("");
+      document.querySelectorAll("[data-view]").forEach(btn=>btn.onclick=()=>{activeView=btn.dataset.view;render()});
+    }
+    function renderInsights(items){
+      const s=summary(items);
+      const ranked=[...items].sort((a,b)=>(b.score-a.score)||compareGamesChronologically(a,b));
+      const top=ranked[0];
+      const accountRows=ACCOUNT_OPTIONS.map(account=>{
+        const list=items.filter(g=>(g.accounts||[]).includes(account));
+        return `<tr><td>${escapeHtml(account)}</td><td>${list.length} agenda(s), ${list.filter(g=>g.coverage==="híbrida").length} híbrida(s)</td></tr>`;
+      }).join("");
+      const auditAlerts=costAuditAlerts(items);
+      const alertHtml=auditAlerts.slice(0,3).map(msg=>`<li><span class="dot" style="background:#d6a21e"></span><span><strong>Conferência de custo:</strong> ${escapeHtml(msg)}</span></li>`).join("");
+      const insights=[
+        top?`<li><span class="dot"></span><span><strong>${escapeHtml(top.game)}</strong> lidera o ranking com score ${top.score}.</span></li>`:"",
+        `<li><span class="dot"></span><span>O custo total filtrado é <strong>${fmtMoney(s.total)}</strong>. O bloco híbrido representa <strong>${fmtMoney(s.hybridTotal)}</strong>.</span></li>`,
+        `<li><span class="dot"></span><span>A visão por conta mostra jogos que alimentam mais de uma frente sem esconder duplicidades estratégicas.</span></li>`,
+        alertHtml,
+        `<li><span class="dot" style="background:#3f4652"></span><span><strong>${escapeHtml(BUDGET_OBS_BRASILEIRAS)}</strong></span></li>`
+      ].filter(Boolean).join("");
+      return `<div class="insights"><div class="box"><h3>Insights automáticos</h3><ul class="insight-list">${insights}</ul></div><div class="box"><h3>Demandas por conta</h3><table class="mini-table">${accountRows}</table></div></div>`;
+    }
+    function weekOfMonth(date){return Math.min(5,Math.ceil(parseDate(date).getDate()/7))}
+    function weekLevel(count){if(count>=3)return"l3";if(count===2)return"l2";if(count===1)return"l1";return""}
+    function loadClass(count){if(count>=3)return"high";if(count===2)return"medium";return""}
+    function accountChips(g){return (g.accounts||[]).map(account=>`<span class="chip account-chip ${accountClass(account)}">${escapeHtml(account)}</span>`).join("")}
+    function profileLabel(account){
+      const key=accountClass(account);
+      if(key==="copa")return "Copa do Brasil";
+      if(key==="brasileirao")return "Brasileirão";
+      if(key==="brasileiras")return "Brasileiras";
+      if(key==="selecao")return "Seleção";
+      return account||"A definir";
+    }
+    function profileTags(g){
+      const accounts=Array.isArray(g.accounts)?g.accounts:[];
+      if(!accounts.length)return `<div class="profile-tags"><span class="profile-tag undefined">Perfil a definir</span></div>`;
+      return `<div class="profile-tags">${accounts.map(account=>`<span class="profile-tag ${accountClass(account)}">${escapeHtml(profileLabel(account))}</span>`).join("")}</div>`;
+    }
+    function detailKey(g){
+      return `details:${g.id}`;
+    }
+
+    function isDetailOpen(g){
+      const key=detailKey(g);
+      if(collapsedDetails.has(key)) return false;
+      return expandedDetails.has(key);
+    }
+
+    function toggleGameDetails(el,id){
+      const key=`details:${id}`;
+      setTimeout(()=>{
+        if(el.open){
+          expandedDetails.add(key);
+          collapsedDetails.delete(key);
+        } else {
+          expandedDetails.delete(key);
+          collapsedDetails.add(key);
+        }
+      },0);
+    }
+
+    function gameCard(g){
+      const realDate=parseDateObj(g.date), unknownDate=!realDate, d=realDate||parseDate(g.date), day=unknownDate?"--":String(d.getDate()).padStart(2,"0"), mon=unknownDate?"A definir":d.toLocaleDateString("pt-BR",{month:"short"}).replace(".",""), week=unknownDate?"A definir":weekdayShort(g.date);
+      return `<article class="game ${cardClass(g)}" ${cardStyle(g)}>${profileTags(g)}<div class="game-top"><div class="datebox" title="${escapeHtml(weekdayLong(g.date))}"><span>${escapeHtml(week)} · ${escapeHtml(mon)}</span><strong>${day}</strong><small>${escapeHtml(dateboxSmall(g))}</small></div><div class="game-main"><div class="comp">${escapeHtml(displayValue(g.competition))}</div><h3 class="game-title">${escapeHtml(displayValue(g.game))}</h3><div class="meta">${escapeHtml(displayValue(g.city))} · ${escapeHtml(displayValue(g.stadium))}<br>${escapeHtml(displayValue(g.phase))}${periodInline(g)}</div></div><div class="score">${g.score}</div></div><div class="chips">${accountChips(g)}<span class="chip priority-${slug(g.priority)}">Prioridade ${escapeHtml(g.priority)}</span><span class="chip coverage-${slug(g.coverage)}">${escapeHtml(displayValue(g.coverage))}</span><span class="chip status-${slug(g.status)}">${escapeHtml(displayValue(g.status))}</span><span class="chip">${fmtMoney(g.totalCost)}</span></div><details ${isDetailOpen(g)?"open":""} ontoggle="toggleGameDetails(this,${g.id})"><summary>Ver justificativa, equipe, custos e score</summary><div class="detail-grid"><div class="detail"><small>Contas/perfis</small><p>${escapeHtml(accountsText(g))}</p></div><div class="detail"><small>Equipe necessária</small><p>${teamHtml(g)}</p></div><div class="detail"><small>Justificativa estratégica</small><p>${escapeHtml(g.reason)}</p></div><div class="detail"><small>Conteúdos previstos</small><p>${escapeHtml(g.plannedContent)}</p></div><div class="detail"><small>Logística</small><p>${escapeHtml(g.logisticsNote)}</p></div><div class="detail"><small>Total passagens</small><strong>${fmtMoney((g.costs||{}).flights)}</strong></div><div class="detail"><small>Total hospedagem</small><strong>${fmtMoney((g.costs||{}).hotel)}</strong></div><div class="detail"><small>Total alimentação</small><strong>${fmtMoney((g.costs||{}).food)}</strong></div><div class="detail"><small>Total transporte</small><strong>${fmtMoney((g.costs||{}).transport)}</strong></div><div class="detail"><small>Total freelancer/equipe</small><strong>${fmtMoney((g.costs||{}).freelancer)}</strong></div><div class="detail"><small>Custo total</small><strong>${fmtMoney(g.totalCost)}</strong></div></div>${periodDetailsHtml(g)}<div class="bars">${Object.keys(SCORE_WEIGHTS).map(k=>`<div class="bar-row"><span>${SCORE_LABELS[k]}</span><div class="bar"><span style="width:${Number((g.criteria||{})[k]||0)*10}%"></span></div><strong>${Number((g.criteria||{})[k]||0)}/10</strong></div>`).join("")}</div></details><div class="card-actions"><button class="small-btn" onclick="editGame(${g.id})">Editar</button><button class="small-btn light" onclick="duplicateGame(${g.id})">Duplicar</button><button class="small-btn danger" onclick="deleteGame(${g.id})">Excluir</button></div></article>`;
+    }
+    function renderCalendarMonth(monthName,list){
+      const total=list.length;
+      const visible=list.slice(0,5).map(gameCard).join("");
+      const hidden=list.slice(5).map(g=>`<div class="month-extra" hidden>${gameCard(g)}</div>`).join("");
+      const button=total>5?`<button class="small-btn light month-more" onclick="toggleMonthGames(this)" data-more="${total-5}">Ver mais (${total-5})</button>`:"";
+      const body=total?`${visible}${hidden}${button}`:"<div class='empty'>Sem jogos neste mês.</div>";
+      return `<div class="month-card"><div class="month-head"><h2>${monthName}</h2><span class="load ${loadClass(total)}">${total} agenda(s)</span></div><div class="weeks"></div><div class="stack">${body}</div></div>`;
+    }
+
+    function renderCalendar(items){
+      const unknownGames=items.filter(g=>monthKey(g.date)==="a-definir").sort(compareGamesChronologically);
+      const monthsHtml=MONTHS.map(m=>{
+        const list=items.filter(g=>monthKey(g.date)===m[0]).sort(compareGamesChronologically);
+        const weeks=[1,2,3,4,5].map(w=>`<div class="week ${weekLevel(list.filter(g=>weekOfMonth(g.date)===w).length)}"></div>`).join("");
+        const total=list.length;
+        const key=`main:${m[0]}`;
+        const isExpanded=expandedMonths.has(key);
+        const visible=list.slice(0,5).map(gameCard).join("");
+        const hidden=list.slice(5).map(g=>`<div class="month-extra" ${isExpanded?"":"hidden"}>${gameCard(g)}</div>`).join("");
+        const button=total>5?`<button class="small-btn light month-more" onclick="toggleMonthGames(this)" data-more="${total-5}" data-key="${escapeHtml(key)}" data-expanded="${isExpanded?"true":"false"}">${isExpanded?"Ver menos":`Ver mais (${total-5})`}</button>`:"";
+        const body=total?`${visible}${hidden}${button}`:"<div class='empty'>Sem jogos neste mês.</div>";
+        return `<div class="month-card"><div class="month-head"><h2>${m[1]}</h2><span class="load ${loadClass(total)}">${total} agenda(s)</span></div><div class="weeks">${weeks}</div><div class="stack">${body}</div></div>`;
+      }).join("");
+      const unknownKey="main:a-definir";
+      const unknownExpanded=expandedMonths.has(unknownKey);
+      const unknownHtml=unknownGames.length?`<div class="month-card"><div class="month-head"><h2>A definir</h2><span class="load medium">${unknownGames.length} agenda(s)</span></div><div class="stack">${unknownGames.slice(0,5).map(gameCard).join("")}${unknownGames.slice(5).map(g=>`<div class="month-extra" ${unknownExpanded?"":"hidden"}>${gameCard(g)}</div>`).join("")}${unknownGames.length>5?`<button class="small-btn light month-more" onclick="toggleMonthGames(this)" data-more="${unknownGames.length-5}" data-key="${escapeHtml(unknownKey)}" data-expanded="${unknownExpanded?"true":"false"}">${unknownExpanded?"Ver menos":`Ver mais (${unknownGames.length-5})`}</button>`:""}</div></div>`:"";
+      return `<div class="month-grid">${monthsHtml}${unknownHtml}</div>`;
+    }
+    function tinyGame(g){return `<div class="tiny-game ${cardClass(g)}" ${cardStyle(g)} onclick="viewGame(${g.id})" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();viewGame(${g.id})}">${profileTags(g)}<strong>${dateRangeWithWeekday(g)} · ${escapeHtml(displayValue(g.game))}</strong><span>${escapeHtml(displayValue(g.competition))} · ${escapeHtml(displayValue(g.coverage))} · score ${g.score}</span><span class="click-hint">Clique para ver detalhes</span></div>`}
+    function renderAccountMonth(monthName,list,key){
+      const total=list.length;
+      const isExpanded=expandedMonths.has(key);
+      const visible=list.slice(0,3).map(tinyGame).join("");
+      const hidden=list.slice(3).map(g=>`<div class="month-extra" ${isExpanded?"":"hidden"}>${tinyGame(g)}</div>`).join("");
+      const button=total>3?`<button class="small-btn light month-more" onclick="toggleMonthGames(this)" data-more="${total-3}" data-key="${escapeHtml(key)}" data-expanded="${isExpanded?"true":"false"}">${isExpanded?"Ver menos":`Ver mais (${total-3})`}</button>`:"";
+      const body=total?`${visible}${hidden}${button}`:"<div class='meta'>Sem agenda</div>";
+      return `<div class="account-month"><h3><span>${monthName}</span><span class="month-count">${total}</span></h3>${body}</div>`;
+    }
+
+    function toggleMonthGames(btn){
+      const month=btn.closest(".account-month,.month-card");
+      if(!month)return;
+      const key=btn.dataset.key;
+      const extras=[...month.querySelectorAll(".month-extra")];
+      const expanded=btn.dataset.expanded==="true";
+
+      extras.forEach(item=>item.hidden=expanded);
+      btn.dataset.expanded=expanded?"false":"true";
+      btn.textContent=expanded?`Ver mais (${btn.dataset.more})`:"Ver menos";
+
+      if(key){
+        if(expanded) expandedMonths.delete(key);
+        else expandedMonths.add(key);
+      }
+    }
+
+    function renderAccountCalendar(items){
+      const stats=ACCOUNT_OPTIONS.map(account=>{const list=items.filter(g=>(g.accounts||[]).includes(account));return `<div class="account-stat"><span class="chip account-chip ${accountClass(account)}">${escapeHtml(account)}</span><strong>${list.length}</strong><small>${list.filter(g=>g.coverage==="híbrida").length} híbrida(s) · ${fmtMoney(list.reduce((s,g)=>s+g.totalCost,0))}</small></div>`}).join("");
+      const sections=ACCOUNT_OPTIONS.map(account=>{
+        const accountGames=items.filter(g=>(g.accounts||[]).includes(account));
+        const monthList=[...MONTHS,["a-definir","A definir"]];
+        const months=monthList.map(m=>{
+          const list=accountGames.filter(g=>monthKey(g.date)===m[0]).sort(compareGamesChronologically);
+          return renderAccountMonth(m[1],list,`account:${account}:${m[0]}`);
+        }).join("");
+        return `<section class="account-section"><div class="account-head"><div><h2>${escapeHtml(account)}</h2><p>${accountGames.length} agenda(s) mapeada(s), incluindo jogos compartilhados com outras contas.</p></div><span class="load ${loadClass(accountGames.length)}">${accountGames.filter(g=>g.coverage==="híbrida").length} híbrida(s)</span></div><div class="account-months">${months}</div></section>`;
+      }).join("");
+      return `<div class="account-overview">${stats}</div><div class="account-sections">${sections}</div>`;
+    }
+    function renderRanking(items){
+      const ranked=[...items].sort((a,b)=>(b.score-a.score)||compareGamesChronologically(a,b));
+      return `<div class="ranking">${ranked.length?ranked.map((g,i)=>`<article class="rank ${cardClass(g)}" ${cardStyle(g)}><div class="rank-num">#${i+1}</div><div>${profileTags(g)}<div class="comp">${escapeHtml(displayValue(g.competition))}</div><h3 class="game-title">${escapeHtml(displayValue(g.game))}</h3><div class="meta">${dateRangeWithWeekday(g)} · ${escapeHtml(displayValue(g.city))} · ${escapeHtml(displayValue(g.coverage))} · ${fmtMoney(g.totalCost)}</div><div class="chips">${accountChips(g)}<span class="chip priority-${slug(g.priority)}">Prioridade ${escapeHtml(g.priority)}</span><span class="chip status-${slug(g.status)}">${escapeHtml(displayValue(g.status))}</span></div><p class="meta">${escapeHtml(g.reason)}</p></div><div class="score">${g.score}</div></article>`).join(""):"<div class='empty'>Sem jogos no ranking.</div>"}</div>`;
+    }
+    function renderList(items){
+      return `<div class="table-wrap"><table class="full"><thead><tr><th>Data</th><th>Contas</th><th>Competição</th><th>Jogo/evento</th><th>Cidade</th><th>Cobertura</th><th>Prioridade</th><th>Status</th><th>Score</th><th>Custo</th><th>Equipe</th><th>Editar</th></tr></thead><tbody>${items.length?items.map(g=>`<tr><td><strong>${dateRangeWithWeekday(g)}</strong><br>${escapeHtml(displayValue(g.time))}</td><td>${escapeHtml(accountsText(g))}</td><td>${escapeHtml(displayValue(g.competition))}<br>${escapeHtml(displayValue(g.phase))}</td><td><strong>${escapeHtml(displayValue(g.game))}</strong><br>${escapeHtml(displayValue(g.stadium))}</td><td>${escapeHtml(displayValue(g.city))}</td><td>${escapeHtml(displayValue(g.coverage))}</td><td>${escapeHtml(g.priority)}</td><td>${escapeHtml(displayValue(g.status))}</td><td><strong>${g.score}</strong></td><td>${fmtMoney(g.totalCost)}</td><td>${escapeHtml(teamText(g))}</td><td><button class="small-btn" onclick="editGame(${g.id})">Editar</button></td></tr>`).join(""):"<tr><td colspan='12'>Sem jogos com os filtros atuais.</td></tr>"}</tbody></table></div>`;
+    }
+    function editableBudgetValue(key,label){
+      return `<span class="budget-editable-value" title="Dê dois cliques para editar" ondblclick="editBudgetValue('${key}','${escapeHtml(label)}')">${fmtMoney(BUDGET_REFERENCE[key])}</span>`;
+    }
+    function execEditableBudgetValue(key,label){
+      return `<span class="exec-editable-value" title="Dê dois cliques para editar" ondblclick="editBudgetValue('${key}','${escapeHtml(label)}')">${fmtMoney(BUDGET_REFERENCE[key])}</span>`;
+    }
+
+    function editBudgetValue(key,label){
+      const current = Number(BUDGET_REFERENCE[key]||0);
+      const raw = prompt(`Editar valor: ${label}\n\nDigite o novo valor em R$`, String(current).replace('.',','));
+      if(raw === null) return;
+      const cleaned = String(raw).trim().replace(/R\$\s?/gi,'').replace(/\./g,'').replace(',', '.');
+      const value = Number(cleaned);
+      if(!Number.isFinite(value) || value < 0){
+        alert('Valor inválido. Use números, por exemplo: 14000 ou 14.000,00');
+        return;
+      }
+      BUDGET_REFERENCE[key] = value;
+      saveBudgetReference(true);
+      renderCurrentView();
+      showToast('Valor atualizado');
+    }
+
+    function renderBudgetConference(){
+      const diff = Number(BUDGET_REFERENCE.dataFifaJunhoDetalhado||0) - Number(BUDGET_REFERENCE.dataFifaJunhoDashboard||0);
+      const items = budgetScenarioItems();
+      const selectedTotal = items.filter(item=>budgetScenarioSelected.has(item.key)).reduce((sum,item)=>sum+Number(BUDGET_REFERENCE[item.key]||0),0);
+      const verbaAtual = Number(BUDGET_REFERENCE.verbaAtual||0);
+      const recomendado = Number(BUDGET_REFERENCE.recomendadoDashboard||0);
+      const remaining = verbaAtual - selectedTotal;
+      const missingToRecommended = Math.max(0, recomendado - selectedTotal);
+      const selectedCount = items.filter(item=>budgetScenarioSelected.has(item.key)).length;
+      const nextPossible = items.filter(item=>!budgetScenarioSelected.has(item.key) && Number(BUDGET_REFERENCE[item.key]||0) <= Math.max(0,remaining));
+      const notIncluded = items.filter(item=>!budgetScenarioSelected.has(item.key));
+      return `
+        <div class="fin-section">
+          <h3>Simulador macro de orçamento</h3>
+          <p class="budget-hint">Selecione os blocos que quer cobrir para montar cenários. Dê dois cliques em qualquer valor para editar manualmente. A verba atual e a meta futura também são editáveis no duplo clique.</p>
+
+          <div class="budget-sim-summary">
+            <div class="budget-sim-card blue">
+              <small>Verba atual</small>
+              <strong>${execEditableBudgetValue('verbaAtual','Verba atual disponível')}</strong>
+            </div>
+            <div class="budget-sim-card">
+              <small>Selecionado</small>
+              <strong>${fmtMoney(selectedTotal)}</strong>
+            </div>
+            <div class="budget-sim-card ${remaining>=0?'green':'red'}">
+              <small>${remaining>=0?'Sobra dentro da verba':'Estouro da verba'}</small>
+              <strong>${fmtMoney(Math.abs(remaining))}</strong>
+            </div>
+            <div class="budget-sim-card blue">
+              <small>Meta futura</small>
+              <strong>${execEditableBudgetValue('recomendadoDashboard','Orçamento recomendado total / meta futura')}</strong>
+            </div>
+          </div>
+
+          <div class="budget-bar-wrap" style="margin-bottom:14px">
+            <div class="budget-bar-label">
+              <span>Cenário selecionado: <strong>${fmtMoney(selectedTotal)}</strong></span>
+              <span>${selectedCount} de ${items.length} bloco(s)</span>
+            </div>
+            <div class="budget-bar">
+              <div class="budget-bar-fill ${selectedTotal>verbaAtual?'over':''}" style="width:${Math.min(100,Math.round(selectedTotal/Math.max(verbaAtual,1)*100))}%"></div>
+            </div>
+            <div class="budget-bar-pct">${Math.round(selectedTotal/Math.max(verbaAtual,1)*100)}% da verba atual utilizada · falta ${fmtMoney(missingToRecommended)} para chegar à meta futura.</div>
+          </div>
+
+          <div class="scenario-detail" style="margin-bottom:0">
+            <div class="budget-sim-grid">
+              ${items.map(item=>{
+                const value = Number(BUDGET_REFERENCE[item.key]||0);
+                const selected = budgetScenarioSelected.has(item.key);
+                const canStillFit = !selected && value <= Math.max(0,remaining);
+                const statusClass = selected ? 'selected' : (canStillFit ? 'possible' : 'out');
+                const statusText = selected ? 'incluído' : (canStillFit ? 'ainda cabe' : `fora da verba · falta ${fmtMoney(Math.max(0,value-Math.max(0,remaining)))}`);
+                return `<div class="budget-sim-row ${selected?'selected':''} ${!selected&&!canStillFit?'locked-out':''}">
+                  <input type="checkbox" ${selected?'checked':''} onchange="toggleBudgetScenarioItem('${item.key}')" title="Incluir ou tirar do cenário">
+                  <div class="s-name"><strong>${escapeHtml(item.label)}</strong><br><span style="font-size:11px;color:#7a8290">${escapeHtml(item.group)}</span></div>
+                  <div class="s-val">${editableBudgetValue(item.key,item.label)}</div>
+                  <span class="budget-status-pill ${statusClass}">${escapeHtml(statusText)}</span>
+                </div>`;
+              }).join('')}
+            </div>
+
+            <div class="budget-sim-actions">
+              <button class="btn" type="button" onclick="selectBudgetScenario('base')">Base mínima</button>
+              <button class="btn" type="button" onclick="selectBudgetScenario('national')">Nacionais + fixos</button>
+              <button class="btn" type="button" onclick="selectBudgetScenario('all')">Selecionar tudo</button>
+              <button class="btn" type="button" onclick="clearBudgetScenario()">Limpar seleção</button>
+              <button class="btn danger" type="button" onclick="resetBudgetReference()">Restaurar referência da planilha</button>
+            </div>
+
+            <div class="budget-diff-note">
+              <strong>Leitura rápida:</strong> ${nextPossible.length ? `ainda caberia selecionar ${nextPossible.map(item=>escapeHtml(item.label)).join(', ')} dentro da verba atual.` : (remaining>=0 ? 'nenhum bloco restante cabe inteiro dentro da sobra atual.' : 'o cenário selecionado já passa da verba atual.')}
+              <br><strong>Não incluído no cenário:</strong> ${notIncluded.length ? notIncluded.map(item=>escapeHtml(item.label)).join(', ') : 'todos os blocos estão incluídos.'}
+              <br><strong>Conferência:</strong> a planilha tinha divergência interna pequena na Data FIFA de junho. Dashboard: ${fmtMoney(BUDGET_REFERENCE.dataFifaJunhoDashboard)} · Aba detalhada: ${fmtMoney(BUDGET_REFERENCE.dataFifaJunhoDetalhado)} · Diferença: ${fmtMoney(diff)}.
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    /* ─── PAINEL FINANCEIRO ─────────────────────────────────────── */
+    function renderFinanceiro(items) {
+      const s = summary(items);
+      const VERBA_ATUAL = BUDGET_REFERENCE.verbaAtual;
+      const VERBA_EXTRA = BUDGET_REFERENCE.verbaExtraDashboard;
+      const VERBA_REC = BUDGET_REFERENCE.recomendadoDashboard;
+      const totalMapped = s.total;
+      const pct = Math.min(100, Math.round(totalMapped / VERBA_REC * 100));
+      const over = totalMapped > VERBA_REC;
+
+      // Custo por frente
+      const frenteData = [
+        { label: "Seleção Feminina", value: items.filter(g=>(g.accounts||[]).includes("Seleção Feminina")).reduce((s,g)=>s+g.totalCost,0) },
+        { label: "Brasileirão Feminino", value: items.filter(g=>(g.accounts||[]).includes("Brasileirão Feminino") && !(g.accounts||[]).includes("Seleção Feminina")).reduce((s,g)=>s+g.totalCost,0) },
+        { label: "Copa do Brasil Feminina", value: items.filter(g=>(g.accounts||[]).includes("Copa do Brasil Feminina") && !(g.accounts||[]).includes("Seleção Feminina")).reduce((s,g)=>s+g.totalCost,0) },
+        { label: "Brasileiras (exc. outras)", value: items.filter(g=>g.accounts && g.accounts.length===1 && g.accounts[0]==="Brasileiras").reduce((s,g)=>s+g.totalCost,0) },
+      ].filter(f => f.value > 0);
+      const maxFrente = Math.max(...frenteData.map(f=>f.value), 1);
+
+      // Custo por categoria
+      const catData = [
+        { label: "Passagens", value: items.reduce((s,g)=>s+Number((g.costs||{}).flights||0),0) },
+        { label: "Hospedagem", value: items.reduce((s,g)=>s+Number((g.costs||{}).hotel||0),0) },
+        { label: "Alimentação", value: items.reduce((s,g)=>s+Number((g.costs||{}).food||0),0) },
+        { label: "Transporte local", value: items.reduce((s,g)=>s+Number((g.costs||{}).transport||0),0) },
+        { label: "Freelancer/equipe", value: items.reduce((s,g)=>s+Number((g.costs||{}).freelancer||0),0) },
+        { label: "Diversos", value: items.reduce((s,g)=>s+Number((g.costs||{}).misc||0),0) },
+      ].filter(f => f.value > 0);
+      const maxCat = Math.max(...catData.map(f=>f.value), 1);
+
+      return `
+        <div class="fin-section">
+          <h3>Resumo executivo de investimento</h3>
+          <div class="exec-cards">
+            <div class="exec-card blue">
+              <small>Verba atual disponível</small>
+              <strong>${execEditableBudgetValue('verbaAtual','Verba atual disponível')}</strong>
+              <span>Saldo informado para operação jun–dez 2026 · duplo clique para editar</span>
+            </div>
+            <div class="exec-card amber">
+              <small>Verba extra necessária</small>
+              <strong>${execEditableBudgetValue('verbaExtraDashboard','Verba extra necessária')}</strong>
+              <span>Diferença para cobrir o cenário recomendado · duplo clique para editar</span>
+            </div>
+            <div class="exec-card green">
+              <small>Orçamento recomendado total</small>
+              <strong>${execEditableBudgetValue('recomendadoDashboard','Orçamento recomendado total / meta futura')}</strong>
+              <span>Mínimo para cobertura aceitável até dez/2026 · duplo clique para editar</span>
+            </div>
+          </div>
+          <div class="exec-cards" style="grid-template-columns:repeat(3,1fr)">
+            <div class="exec-card">
+              <small>Custo mapeado neste planner</small>
+              <strong>${fmtMoney(totalMapped)}</strong>
+              <span>${items.length} agendas com custos preenchidos</span>
+            </div>
+            <div class="exec-card">
+              <small>Custo médio por agenda</small>
+              <strong>${fmtMoney(s.avg)}</strong>
+              <span>Média entre todas as agendas filtradas</span>
+            </div>
+            <div class="exec-card">
+              <small>Agendas com prioridade alta</small>
+              <strong>${s.high}</strong>
+              <span>de ${s.totalGames} mapeadas no filtro atual</span>
+            </div>
+          </div>
+        </div>
+
+        ${renderBudgetConference()}
+
+        <div class="fin-section">
+          <h3>Custo mapeado vs. orçamento recomendado</h3>
+          <div class="budget-bar-wrap">
+            <div class="budget-bar-label">
+              <span>Custo mapeado: <strong>${fmtMoney(totalMapped)}</strong></span>
+              <span>Meta: <strong>${fmtMoney(VERBA_REC)}</strong></span>
+            </div>
+            <div class="budget-bar">
+              <div class="budget-bar-fill ${over?'over':''}" style="width:${pct}%"></div>
+            </div>
+            <div class="budget-bar-pct">${pct}% do orçamento recomendado mapeado ${over?'⚠️ Acima da meta':'✓'}</div>
+          </div>
+          <div class="budget-bar-wrap" style="margin-top:0">
+            <div class="budget-bar-label">
+              <span>Verba atual: <strong>${fmtMoney(VERBA_ATUAL)}</strong></span>
+              <span>vs. custo mapeado: <strong>${fmtMoney(totalMapped)}</strong></span>
+            </div>
+            <div class="budget-bar">
+              <div class="budget-bar-fill" style="width:${Math.min(100,Math.round(VERBA_ATUAL/Math.max(totalMapped,1)*100))}%; background:linear-gradient(90deg,#2f8a68,#2f8a68)"></div>
+            </div>
+            <div class="budget-bar-pct">Verba atual cobre ${Math.min(100,Math.round(VERBA_ATUAL/Math.max(totalMapped,1)*100))}% do custo mapeado</div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px">
+          <div class="fin-section" style="margin:0">
+            <h3>Custo por frente de conteúdo</h3>
+            <div class="bar-chart">
+              ${frenteData.map(f=>`
+                <div class="bar-chart-row">
+                  <div class="bar-chart-label" title="${f.label}">${f.label}</div>
+                  <div class="bar-chart-track"><div class="bar-chart-fill" style="width:${Math.round(f.value/maxFrente*100)}%"></div></div>
+                  <div class="bar-chart-val">${fmtMoney(f.value)}</div>
+                </div>
+              `).join('')}
+              ${!frenteData.length?`<div style="color:#5f6673;font-size:13px">Preencha os custos nas agendas para ver este gráfico.</div>`:''}
+            </div>
+          </div>
+          <div class="fin-section" style="margin:0">
+            <h3>Custo por categoria de gasto</h3>
+            <div class="bar-chart">
+              ${catData.map(f=>`
+                <div class="bar-chart-row">
+                  <div class="bar-chart-label" title="${f.label}">${f.label}</div>
+                  <div class="bar-chart-track"><div class="bar-chart-fill" style="width:${Math.round(f.value/maxCat*100)}%;background:linear-gradient(90deg,#6b62b7,#1f5f99)"></div></div>
+                  <div class="bar-chart-val">${fmtMoney(f.value)}</div>
+                </div>
+              `).join('')}
+              ${!catData.length?`<div style="color:#5f6673;font-size:13px">Preencha os custos nas agendas.</div>`:''}
+            </div>
+          </div>
+        </div>
+
+        <div class="fin-section">
+          <h3>Detalhamento por conta/rede</h3>
+          ${renderCostBreakdown(items)}
+        </div>
+      `;
+    }
+
+    /* ─── SIMULADOR ─────────────────────────────────────────────── */
+    function renderSimulador(items) {
+      const sorted = [...items].sort(compareGamesChronologically);
+      const simTotal = sorted.filter(g => simSelected.has(g.id)).reduce((s,g)=>s+g.totalCost, 0);
+      const pct = simBudget > 0 ? Math.min(200, Math.round(simTotal / simBudget * 100)) : 0;
+      const over = simTotal > simBudget;
+      const remaining = simBudget - simTotal;
+      const networkCards = ACCOUNT_OPTIONS.map(account => {
+        const list = sorted.filter(g => (g.accounts||[]).includes(account));
+        if(!list.length) return "";
+        const ids = list.map(g=>g.id);
+        const selectedCount = list.filter(g=>simSelected.has(g.id)).length;
+        const selectedValue = list.filter(g=>simSelected.has(g.id)).reduce((s,g)=>s+g.totalCost,0);
+        const totalValue = list.reduce((s,g)=>s+g.totalCost,0);
+        const collapsed = simCollapsedNetworks.has(account);
+        return `
+          <section class="sim-network-card ${collapsed?'is-collapsed':''}">
+            <button type="button" class="sim-network-head" onclick="simToggleNetwork('${escapeJs(account)}')">
+              <div class="sim-network-title">
+                <strong>${escapeHtml(account)}</strong>
+                <span>${list.length} agenda(s) · ${selectedCount} selecionada(s) · ${fmtMoney(selectedValue)} selecionados</span>
+              </div>
+              <div class="sim-network-meta">Total da rede: ${fmtMoney(totalValue)}</div>
+              <div class="sim-network-chevron">⌄</div>
+            </button>
+            <div class="sim-network-body">
+              <div class="sim-network-actions">
+                <button type="button" class="small-btn" onclick="event.stopPropagation();simSelectNetwork('${escapeJs(account)}',true)">Selecionar todos os jogos da rede</button>
+                <button type="button" class="small-btn light" onclick="event.stopPropagation();simSelectNetwork('${escapeJs(account)}',false)">Limpar rede</button>
+              </div>
+              <div class="sim-game-grid">
+                ${list.map(g => `
+                  <div class="sim-game-item ${simSelected.has(g.id)?'selected':''}" onclick="simToggle(${g.id})" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();simToggle(${g.id})}">
+                    <input type="checkbox" ${simSelected.has(g.id)?'checked':''} onclick="event.stopPropagation();simToggle(${g.id})">
+                    <div>
+                      <div class="sim-game-name">${escapeHtml(displayValue(g.game))}</div>
+                      <div class="sim-game-meta">${escapeHtml(displayValue(g.competition))} · ${escapeHtml(displayValue(g.coverage))} · Prioridade ${escapeHtml(g.priority)}</div>
+                    </div>
+                    <div class="sim-game-date"><span class="weekday-pill">${escapeHtml(weekdayShort(g.date))}</span><br>${dateRangeText(g)}</div>
+                    <div class="sim-game-cost">${fmtMoney(g.totalCost)}</div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </section>
+        `;
+      }).join('');
+
+      return `
+        <div class="sim-total-bar">
+          <div class="sim-total-numbers">
+            <div class="sim-num">
+              <span>Verba disponível</span><br>
+              <strong>${fmtMoney(simBudget)}</strong>
+            </div>
+            <div class="sim-num">
+              <span>Selecionado</span><br>
+              <strong style="color:${over?'#c0392b':'#1f5f99'}">${fmtMoney(simTotal)}</strong>
+            </div>
+            <div class="sim-num">
+              <span>${over?'Estouro':'Sobra'}</span><br>
+              <strong style="color:${over?'#c0392b':'#1f6b50'}">${fmtMoney(Math.abs(remaining))}</strong>
+            </div>
+            <div class="sim-num" style="flex:1">
+              <div class="budget-bar" style="margin-top:6px">
+                <div class="budget-bar-fill ${over?'over':''}" style="width:${Math.min(100,pct)}%"></div>
+              </div>
+              <div class="budget-bar-pct">${pct}% da verba utilizada · ${simSelected.size} agenda(s) selecionada(s)</div>
+            </div>
+            <div class="sim-num sim-reset">
+              <button class="btn" onclick="simClearAll()">Limpar seleção</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="fin-section" style="margin-bottom:14px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:10px">
+            <h3 style="margin:0">Verba simulada</h3>
+            <div class="sim-budget-input">
+              <label>Verba disponível (R$)</label>
+              <input type="number" id="simBudgetInput" value="${simBudget}" min="0" step="1000" oninput="simBudget=Number(this.value)||0;renderCurrentView()">
+            </div>
+          </div>
+          <p style="margin:0;font-size:13px;color:#5f6673">
+            Agora o simulador está agrupado por rede. Abra uma rede, selecione jogos individuais ou use “Selecionar todos os jogos da rede”. Jogos que alimentam mais de uma rede aparecem em mais de um bloco, mas o custo só entra uma vez no total.
+          </p>
+        </div>
+
+        <div class="sim-network-grid">
+          ${networkCards || `<div class="empty">Sem agendas com os filtros atuais.</div>`}
+        </div>
+      `;
+    }
+
+    function simToggle(id) {
+      if (simSelected.has(id)) simSelected.delete(id);
+      else simSelected.add(id);
+      renderCurrentView();
+    }
+    function simClearAll() { simSelected.clear(); renderCurrentView(); }
+    function simToggleNetwork(account){
+      if(simCollapsedNetworks.has(account)) simCollapsedNetworks.delete(account);
+      else simCollapsedNetworks.add(account);
+      renderCurrentView();
+    }
+    function simSelectNetwork(account, selected){
+      filteredGames().filter(g=>(g.accounts||[]).includes(account)).forEach(g=>{
+        if(selected) simSelected.add(g.id);
+        else simSelected.delete(g.id);
+      });
+      renderCurrentView();
+    }
+
+    /* ─── CENÁRIOS ──────────────────────────────────────────────── */
+    function getScenarios(){ return [
+      {
+        id: 's-min', label: 'Operação mínima', title: 'Com a verba atual',
+        total: BUDGET_REFERENCE.minimoOperacional, extra: 0, verba: BUDGET_REFERENCE.verbaAtual,
+        desc: 'Operação de sobrevivência. Cobre apenas fixos essenciais e cobertura reduzida do primeiro semestre.',
+        lines: [
+          { name: 'Editor fixo jun–dez', val: BUDGET_REFERENCE.editorFixo, covered: true },
+          { name: 'Estúdio Brasileiras (risco)', val: BUDGET_REFERENCE.estudioBrasileiras, covered: true },
+          { name: 'Data FIFA junho (SP + Fortaleza)', val: BUDGET_REFERENCE.dataFifaJunhoDetalhado, covered: true },
+          { name: 'Brasileirão – 5 rodadas com freelas', val: 16000, covered: true },
+          { name: 'Copa do Brasil – oitavas e quartas', val: 5600, covered: true },
+          { name: 'Fase final do Brasileirão', val: 32800, covered: false },
+          { name: 'Copa do Brasil – semi e final', val: 26400, covered: false },
+          { name: 'Finalíssima Wembley', val: BUDGET_REFERENCE.finalissima, covered: false },
+          { name: 'Data FIFA Japão', val: BUDGET_REFERENCE.japao, covered: false },
+          { name: 'Ferramentas operacionais', val: BUDGET_REFERENCE.ferramentas, covered: false },
+        ],
+        note: '⚠️ A verba atual não sustenta nenhuma das entregas estratégicas do segundo semestre.'
+      },
+      {
+        id: 's-med', label: 'Cenário intermediário', title: 'Cobertura parcial',
+        total: BUDGET_REFERENCE.fixosEditorEstudio + BUDGET_REFERENCE.dataFifaJunhoDetalhado + BUDGET_REFERENCE.competicoesNacionais + BUDGET_REFERENCE.ferramentas, extra: Math.max(0, BUDGET_REFERENCE.fixosEditorEstudio + BUDGET_REFERENCE.dataFifaJunhoDetalhado + BUDGET_REFERENCE.competicoesNacionais + BUDGET_REFERENCE.ferramentas - BUDGET_REFERENCE.verbaAtual), verba: BUDGET_REFERENCE.fixosEditorEstudio + BUDGET_REFERENCE.dataFifaJunhoDetalhado + BUDGET_REFERENCE.competicoesNacionais + BUDGET_REFERENCE.ferramentas,
+        desc: 'Cobre as competições nacionais até as finais e a Data FIFA de junho. Abre mão das janelas internacionais.',
+        lines: [
+          { name: 'Editor fixo jun–dez', val: BUDGET_REFERENCE.editorFixo, covered: true },
+          { name: 'Estúdio Brasileiras (risco)', val: BUDGET_REFERENCE.estudioBrasileiras, covered: true },
+          { name: 'Data FIFA junho (SP + Fortaleza)', val: BUDGET_REFERENCE.dataFifaJunhoDetalhado, covered: true },
+          { name: 'Brasileirão – todas as fases', val: BUDGET_REFERENCE.brasileiraoTotal, covered: true },
+          { name: 'Copa do Brasil – oitavas até final', val: BUDGET_REFERENCE.copaTotal, covered: true },
+          { name: 'Ferramentas operacionais', val: BUDGET_REFERENCE.ferramentas, covered: true },
+          { name: 'Finalíssima Wembley', val: BUDGET_REFERENCE.finalissima, covered: false },
+          { name: 'Data FIFA Japão', val: BUDGET_REFERENCE.japao, covered: false },
+        ],
+        note: '⚠️ Sem Wembley e sem Japão, a CBF vai a dois dos maiores palcos do ano sem cobertura própria.'
+      },
+      {
+        id: 's-rec', label: 'Cenário recomendado', title: 'Cobertura completa',
+        total: BUDGET_REFERENCE.recomendadoDashboard, extra: BUDGET_REFERENCE.verbaExtraDashboard, verba: BUDGET_REFERENCE.recomendadoDashboard,
+        desc: 'Cobre todas as frentes no nível mínimo aceitável. Não é conforto — é o que a operação real exige.',
+        lines: [
+          { name: 'Editor fixo jun–dez', val: BUDGET_REFERENCE.editorFixo, covered: true },
+          { name: 'Estúdio Brasileiras', val: BUDGET_REFERENCE.estudioBrasileiras, covered: true },
+          { name: 'Data FIFA junho (SP + Fortaleza)', val: BUDGET_REFERENCE.dataFifaJunhoDetalhado, covered: true },
+          { name: 'Brasileirão – todas as fases', val: BUDGET_REFERENCE.brasileiraoTotal, covered: true },
+          { name: 'Copa do Brasil – oitavas até final', val: BUDGET_REFERENCE.copaTotal, covered: true },
+          { name: 'Finalíssima Wembley', val: BUDGET_REFERENCE.finalissima, covered: true },
+          { name: 'Data FIFA Japão', val: BUDGET_REFERENCE.japao, covered: true },
+          { name: 'Ferramentas operacionais', val: BUDGET_REFERENCE.ferramentas, covered: true },
+        ],
+        note: '✓ Esse é o pedido. R$ 152.751 adicionais à verba atual, totalizando R$ 210.247 no Dashboard executivo. A conta detalhada da Data FIFA de junho deve ser reconciliada antes da versão final.'
+      }
+    ]; }
+    let activeScenario = 's-rec';
+
+    function renderCenarios() {
+      const SCENARIOS = getScenarios();
+      const sc = SCENARIOS.find(s => s.id === activeScenario) || SCENARIOS[0];
+      return `
+        <div class="scenario-cards">
+          ${SCENARIOS.map(s => `
+            <div class="scenario-card ${s.id} ${activeScenario===s.id?'active':''}" onclick="setScenario('${s.id}')">
+              <div class="s-label">${s.label}</div>
+              <h3>${s.title}</h3>
+              <div class="s-total">${fmtMoney(s.total)}</div>
+              <p>${s.desc}</p>
+              ${s.extra > 0 ? `<div style="margin-top:10px;font-size:12px;font-weight:900;color:#5f6673">Verba extra necessária: <span style="color:#172033">${fmtMoney(s.extra)}</span></div>` : `<div style="margin-top:10px;font-size:12px;font-weight:900;color:#2f8a68">Dentro da verba atual</div>`}
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="exec-cards" style="grid-template-columns:repeat(3,1fr);margin-bottom:18px">
+          <div class="exec-card ${activeScenario==='s-min'?'red':activeScenario==='s-med'?'amber':'green'}">
+            <small>Verba necessária</small>
+            <strong>${fmtMoney(sc.verba)}</strong>
+            <span>${sc.label}</span>
+          </div>
+          <div class="exec-card blue">
+            <small>Verba atual disponível</small>
+            <strong>${fmtMoney(BUDGET_REFERENCE.verbaAtual)}</strong>
+            <span>Saldo confirmado</span>
+          </div>
+          <div class="exec-card ${sc.extra>0?'amber':'green'}">
+            <small>${sc.extra>0?'Verba extra a solicitar':'Nenhuma verba extra'}</small>
+            <strong>${fmtMoney(sc.extra)}</strong>
+            <span>${sc.extra>0?'Necessária para este cenário':'Operação dentro do orçamento atual'}</span>
+          </div>
+        </div>
+
+        <div class="scenario-detail">
+          <h4>O que está coberto — ${sc.title}</h4>
+          ${sc.lines.map(l=>`
+            <div class="scenario-line ${l.covered?'covered':'uncovered'}">
+              <div class="s-name">${l.covered?'✓':'✗'} ${escapeHtml(l.name)}</div>
+              <div class="s-val">${fmtMoney(l.val)}</div>
+            </div>
+          `).join('')}
+          <div class="scenario-note">${escapeHtml(sc.note)}</div>
+        </div>
+      `;
+    }
+
+    function setScenario(id) { activeScenario = id; renderCurrentView(); }
+
+
+    function teamCandidatesFromText(text){
+      const raw=String(text||"").trim();
+      if(isUnknown(raw)) return [];
+      if(/\b(final|semifinal|especial|encerramento|data fifa|amistoso internacional)\b/i.test(raw) && !/\s+x\s+|\s+vs\.?\s+/i.test(raw)) return [];
+      const parts=raw.split(/\s+(?:x|X|vs\.?|versus)\s+/i).map(p=>p.trim()).filter(Boolean);
+      if(parts.length>=2) return parts.slice(0,2).map(cleanTeamName).filter(Boolean);
+      return [];
+    }
+    function cleanTeamName(name){
+      return String(name||"")
+        .replace(/\s*\([^)]*\)\s*/g," ")
+        .replace(/\b(feminina|feminino|sub-?\d+|final|semifinal|jogo|evento)\b/gi,"")
+        .replace(/\s+/g," ")
+        .trim();
+    }
+    function teamsForGame(g){
+      const teams=[];
+      teamCandidatesFromText(g.game).forEach(t=>teams.push(t));
+      (g.periodMatches||[]).forEach(m=>teamCandidatesFromText(m.game).forEach(t=>teams.push(t)));
+      return unique(teams).filter(Boolean);
+    }
+    function buildTeamNetworkControl(items){
+      const map={};
+      items.forEach(g=>{
+        const teams=teamsForGame(g);
+        if(!teams.length) return;
+        const accounts=Array.isArray(g.accounts)&&g.accounts.length?g.accounts:["Rede a definir"];
+        teams.forEach(team=>{
+          if(!map[team]) map[team]={team,total:0,accounts:{},games:new Set(),inLoco:0,hybrid:0,remote:0};
+          map[team].total+=1;
+          map[team].games.add(g.id);
+          if(g.coverage==="in loco") map[team].inLoco+=1;
+          if(g.coverage==="híbrida") map[team].hybrid+=1;
+          if(g.coverage==="remota") map[team].remote+=1;
+          accounts.forEach(account=>{
+            if(!map[team].accounts[account]) map[team].accounts[account]={total:0,inLoco:0,hybrid:0,remote:0,cost:0,games:[]};
+            map[team].accounts[account].total+=1;
+            map[team].accounts[account].cost+=g.totalCost;
+            map[team].accounts[account].games.push(g.game);
+            if(g.coverage==="in loco") map[team].accounts[account].inLoco+=1;
+            if(g.coverage==="híbrida") map[team].accounts[account].hybrid+=1;
+            if(g.coverage==="remota") map[team].accounts[account].remote+=1;
+          });
+        });
+      });
+      return Object.values(map).sort((a,b)=>b.total-a.total || a.team.localeCompare(b.team,"pt-BR"));
+    }
+    function accountControlCell(row,account){
+      const data=row.accounts[account];
+      if(!data) return "-";
+      return `<strong>${data.total}</strong><br><span>${data.inLoco} in loco · ${data.hybrid} híbrida(s) · ${data.remote} remota(s)</span>`;
+    }
+    function renderTeamNetworkControl(items){
+      const rows=buildTeamNetworkControl(items);
+      const totals=ACCOUNT_OPTIONS.map(account=>({account,total:rows.reduce((s,row)=>s+(row.accounts[account]?.total||0),0)}));
+      const topTeams=rows.slice(0,8).map(row=>`<span class="team-pill">${escapeHtml(row.team)} · ${row.total}</span>`).join("");
+      const cards=ACCOUNT_OPTIONS.map(account=>{
+        const total=totals.find(t=>t.account===account)?.total||0;
+        return `<div class="account-stat"><span class="profile-tag ${accountClass(account)}">${escapeHtml(profileLabel(account))}</span><strong>${total}</strong><small>cobertura(s) vinculada(s) a times nesta rede</small></div>`;
+      }).join("");
+      return `
+        <div class="coverage-control-grid">
+          <section class="coverage-control-card">
+            <div class="coverage-control-head">
+              <div>
+                <h3>Controle de cobertura por time e rede</h3>
+                <p>Conta quantas vezes cada time aparece nas agendas filtradas e cruza com cada rede. Jogos com “Time A x Time B” contam para os dois times. Agendas genéricas, como “Final” sem times definidos, ficam fora até você preencher os clubes.</p>
+              </div>
+              <span class="load ${loadClass(rows.length)}">${rows.length} time(s)</span>
+            </div>
+            <div class="account-overview">${cards}</div>
+            ${topTeams?`<div style="margin-bottom:14px"><strong style="font-size:13px;color:#172033">Times mais cobertos:</strong><br>${topTeams}</div>`:""}
+            <div class="table-wrap">
+              <table class="team-control-table">
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Total</th>
+                    ${ACCOUNT_OPTIONS.map(account=>`<th>${escapeHtml(profileLabel(account))}</th>`).join("")}
+                    <th>Resumo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${rows.length?rows.map(row=>`
+                    <tr>
+                      <td><strong>${escapeHtml(row.team)}</strong></td>
+                      <td><strong>${row.total}</strong></td>
+                      ${ACCOUNT_OPTIONS.map(account=>`<td>${accountControlCell(row,account)}</td>`).join("")}
+                      <td>${row.inLoco} in loco · ${row.hybrid} híbrida(s) · ${row.remote} remota(s)</td>
+                    </tr>
+                  `).join(""):`<tr><td colspan="${ACCOUNT_OPTIONS.length+3}">Nenhum time identificado nos jogos filtrados. Preencha os confrontos no formato “Time A x Time B” para ativar este controle.</td></tr>`}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      `;
+    }
+
+    /* ─── GESTÃO DE VERBA (v31) ─────────────────────────────────── */
+    function renderVerba(items) {
+      const sorted = [...items].sort(compareGamesChronologically);
+      const included = sorted.filter(g => verbaState.included.has(g.id));
+      const totalIncluido = included.reduce((s,g)=>s+g.totalCost, 0);
+      const verba = verbaState.total;
+      const sobra = verba - totalIncluido;
+      const over = sobra < 0;
+      const pct = verba > 0 ? Math.min(100, Math.round(totalIncluido / verba * 100)) : 0;
+
+      const COST_LABELS = { flights:"Passagens", hotel:"Hospedagem", food:"Alimentação", transport:"Transporte", freelancer:"Freelancer/Equipe", misc:"Diversos" };
+
+      function costField(gameId, costKey, value) {
+        return `<span class="verba-cost-val" ondblclick="startEditCost(this,${gameId},'${costKey}')" title="Duplo clique para editar">${fmtMoney(value)}</span>`;
+      }
+
+      function verbaGameCard(g) {
+        const isIn = verbaState.included.has(g.id);
+        const costs = g.costs || {};
+        const total = g.totalCost;
+        return `
+          <div class="verba-card ${isIn ? 'verba-included' : 'verba-excluded'}">
+            <div class="verba-card-top">
+              <label class="verba-checkbox-wrap" title="${isIn ? 'Remover da verba' : 'Incluir na verba'}">
+                <input type="checkbox" class="verba-checkbox" ${isIn ? 'checked' : ''} onchange="toggleVerba(${g.id},this.checked)">
+                <span class="verba-checkbox-label">${isIn ? 'Na verba' : 'Fora'}</span>
+              </label>
+              <div class="verba-card-info">
+                <div class="verba-comp">${escapeHtml(displayValue(g.competition))}</div>
+                <div class="verba-title">${escapeHtml(displayValue(g.game))}</div>
+                <div class="verba-meta">${dateRangeWithWeekday(g)} · ${escapeHtml(displayValue(g.city))} · ${escapeHtml(g.coverage)}</div>
+                <div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:5px">
+                  ${(g.accounts||[]).map(a=>`<span class="profile-tag ${accountClass(a)}" style="font-size:10px;padding:4px 9px 4px 10px;min-height:22px">${escapeHtml(profileLabel(a))}</span>`).join('')}
+                </div>
+              </div>
+              <div class="verba-card-total">
+                <div class="verba-total-label">Total estimado</div>
+                <div class="verba-total-value" style="color:${isIn?'#1f5f99':'#5f6673'}">${fmtMoney(total)}</div>
+                <button class="small-btn light" style="margin-top:8px;font-size:11px" onclick="editGame(${g.id})">✏ Editar</button>
+              </div>
+            </div>
+            <details class="verba-costs-details">
+              <summary>Ver custos detalhados <span style="color:#5f6673;font-weight:800;font-size:11px">(duplo clique em qualquer valor para editar)</span></summary>
+              <div class="verba-costs-grid">
+                ${Object.entries(COST_LABELS).map(([key, label]) => `
+                  <div class="verba-cost-row">
+                    <span class="verba-cost-name">${label}</span>
+                    ${costField(g.id, key, costs[key]||0)}
+                  </div>
+                `).join('')}
+                <div class="verba-cost-row verba-cost-total">
+                  <span class="verba-cost-name"><strong>Total</strong></span>
+                  <strong>${fmtMoney(total)}</strong>
+                </div>
+                ${g.logisticsNote ? `<div style="grid-column:1/-1;margin-top:4px;font-size:12px;color:#5f6673">${escapeHtml(g.logisticsNote)}</div>` : ''}
+              </div>
+            </details>
+          </div>
+        `;
+      }
+
+      // ── Cards de resumo por rede ───────────────────────────────────
+      const networkSummary = ACCOUNT_OPTIONS.map(account => {
+        const all = sorted.filter(g => (g.accounts||[]).includes(account));
+        const sel = all.filter(g => verbaState.included.has(g.id));
+        const totalSel = sel.reduce((s,g)=>s+g.totalCost,0);
+        const totalAll = all.reduce((s,g)=>s+g.totalCost,0);
+        const pctNet = totalIncluido > 0 ? Math.round(totalSel / totalIncluido * 100) : 0;
+        const cls = accountClass(account);
+        return `
+          <div class="verba-net-card verba-net-${cls}">
+            <span class="profile-tag ${cls}" style="font-size:10px;padding:4px 10px;min-height:22px;margin-bottom:8px;display:inline-flex">${escapeHtml(profileLabel(account))}</span>
+            <div class="verba-net-value">${fmtMoney(totalSel)}</div>
+            <div class="verba-net-sub">${sel.length} de ${all.length} agenda${all.length!==1?'s':''} incluída${sel.length!==1?'s':''}</div>
+            <div class="verba-net-bar-wrap">
+              <div class="verba-net-bar"><div class="verba-net-bar-fill verba-net-fill-${cls}" style="width:${Math.min(100,pctNet)}%"></div></div>
+              <span class="verba-net-pct">${pctNet}% do comprometido</span>
+            </div>
+            <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap">
+              <button class="btn" style="font-size:11px;padding:5px 8px" onclick="selectVerbaNetwork('${escapeJs(account)}',true)">Incluir todos</button>
+              <button class="btn" style="font-size:11px;padding:5px 8px" onclick="selectVerbaNetwork('${escapeJs(account)}',false)">Remover</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // ── Jogos agrupados por rede ──────────────────────────────────
+      const networkGroups = ACCOUNT_OPTIONS.map(account => {
+        const list = sorted.filter(g => (g.accounts||[]).includes(account));
+        if(!list.length) return '';
+        const sel = list.filter(g => verbaState.included.has(g.id));
+        const totalSel = sel.reduce((s,g)=>s+g.totalCost,0);
+        const cls = accountClass(account);
+        return `
+          <section class="verba-group">
+            <div class="verba-group-head">
+              <span class="profile-tag ${cls}" style="font-size:11px;padding:5px 13px 5px 14px">${escapeHtml(profileLabel(account))}</span>
+              <div class="verba-group-stats">
+                <span>${sel.length} de ${list.length} incluída${list.length!==1?'s':''}</span>
+                <strong>${fmtMoney(totalSel)}</strong>
+              </div>
+            </div>
+            <div class="verba-cards-grid">
+              ${list.map(verbaGameCard).join('')}
+            </div>
+          </section>
+        `;
+      }).join('');
+
+      // Jogos sem rede definida
+      const noNetwork = sorted.filter(g => !(g.accounts||[]).length);
+      const noNetworkHtml = noNetwork.length ? `
+        <section class="verba-group">
+          <div class="verba-group-head">
+            <span style="font-size:13px;font-weight:900;color:#5f6673">Sem rede definida</span>
+          </div>
+          <div class="verba-cards-grid">${noNetwork.map(verbaGameCard).join('')}</div>
+        </section>
+      ` : '';
+
+      return `
+        <!-- Barra sticky global -->
+        <div class="verba-bar">
+          <div class="verba-bar-inner">
+            <div class="verba-bar-num">
+              <span>Verba total</span>
+              <strong id="verbaTotalDisplay">${fmtMoney(verba)}</strong>
+              <button class="small-btn light" style="font-size:11px;margin-top:4px" onclick="startEditVerba()">✏ Editar</button>
+            </div>
+            <div class="verba-bar-num">
+              <span>Comprometido (${included.length} agenda${included.length!==1?'s':''})</span>
+              <strong style="color:${over?'#c0392b':'#1f5f99'}">${fmtMoney(totalIncluido)}</strong>
+            </div>
+            <div class="verba-bar-num">
+              <span>${over ? '⚠ Estouro' : 'Disponível'}</span>
+              <strong style="color:${over?'#c0392b':'#1f6b50'}">${fmtMoney(Math.abs(sobra))}</strong>
+            </div>
+            <div class="verba-bar-track-wrap">
+              <div class="verba-bar-track">
+                <div class="verba-bar-fill ${over?'over':''}" style="width:${pct}%"></div>
+              </div>
+              <div class="verba-bar-pct">${pct}% da verba comprometida</div>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="btn" onclick="selectAllVerba(true)">Incluir todos</button>
+              <button class="btn" onclick="selectAllVerba(false)">Remover todos</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resumo por rede -->
+        <div class="verba-network-summary">
+          ${networkSummary}
+        </div>
+
+        <!-- Jogos agrupados por rede -->
+        <div class="verba-groups">
+          ${networkGroups}
+          ${noNetworkHtml}
+          ${!sorted.length ? '<div class="empty">Sem agendas. Adicione jogos para começar.</div>' : ''}
+        </div>
+
+        <p style="margin:18px 0 0;font-size:12px;color:#5f6673;text-align:center">
+          ${BUDGET_OBS_BRASILEIRAS}
+        </p>
+      `;
+    }
+
+    function toggleVerba(id, checked) {
+      if(checked) verbaState.included.add(id);
+      else verbaState.included.delete(id);
+      saveVerbaState();
+      renderCurrentView();
+    }
+    function selectAllVerba(val) {
+      const items = filteredGames();
+      if(val) items.forEach(g => verbaState.included.add(g.id));
+      else items.forEach(g => verbaState.included.delete(g.id));
+      saveVerbaState();
+      renderCurrentView();
+    }
+    function startEditVerba() {
+      const el = document.getElementById("verbaTotalDisplay");
+      if(!el) return;
+      const cur = verbaState.total;
+      const input = document.createElement("input");
+      input.type = "number";
+      input.value = cur;
+      input.style.cssText = "width:150px;font-size:18px;font-weight:900;border-radius:10px;border:2px solid #1f5f99;padding:4px 8px";
+      input.onblur = () => { verbaState.total = Number(input.value)||cur; saveVerbaState(); renderCurrentView(); };
+      input.onkeydown = e => { if(e.key==="Enter") input.blur(); if(e.key==="Escape"){ verbaState.total=cur; renderCurrentView(); }};
+      el.replaceWith(input);
+      input.focus(); input.select();
+    }
+    function startEditCost(el, gameId, costKey) {
+      const g = games.find(item => Number(item.id) === Number(gameId));
+      if(!g) return;
+      const cur = Number((g.costs||{})[costKey]||0);
+      const input = document.createElement("input");
+      input.type = "number";
+      input.value = cur;
+      input.min = "0";
+      input.style.cssText = "width:110px;font-size:13px;font-weight:900;border-radius:10px;border:2px solid #1f5f99;padding:4px 8px";
+      const save = () => {
+        const val = Number(input.value)||0;
+        g.costs[costKey] = val;
+        saveGames();
+        renderCurrentView();
+      };
+      input.onblur = save;
+      input.onkeydown = e => { if(e.key==="Enter") input.blur(); if(e.key==="Escape") renderCurrentView(); };
+      el.replaceWith(input);
+      input.focus(); input.select();
+    }
+
+    function selectVerbaNetwork(account, val) {
+      filteredGames().filter(g => (g.accounts||[]).includes(account)).forEach(g => {
+        if(val) verbaState.included.add(g.id);
+        else verbaState.included.delete(g.id);
+      });
+      saveVerbaState();
+      renderCurrentView();
+    }
+    function renderCurrentView() {
+      const items = filteredGames();
+      renderSummary(items);
+      const view = {
+        verba: renderVerba,
+        calendario: renderCalendar,
+        contas: renderAccountCalendar,
+        controle: renderTeamNetworkControl,
+        ranking: renderRanking,
+        lista: renderList,
+        financeiro: renderFinanceiro,
+        simulador: renderSimulador,
+        cenarios: () => renderCenarios()
+      }[activeView](items);
+      const showInsightsAndCost = !['verba','financeiro','simulador','cenarios','controle'].includes(activeView);
+      document.getElementById("content").innerHTML =
+        (showInsightsAndCost ? renderInsights(items) + renderCostBreakdown(items) : '') + view;
+    }
+
+    function render(){
+      setupFilters(); renderTabs();
+      renderCurrentView();
+    }
+
+    
+    function emptyGame(){
+      const nextId=Math.max(0,...games.map(g=>Number(g.id||0)))+1;
+      return {id:nextId,date:"A definir",endDate:"A definir",time:"A definir",competition:"A definir",game:"A definir",city:"A definir",stadium:"A definir",phase:"A definir",accounts:[],coverage:"a definir",priority:"média",status:"a definir",reason:"",contentPotential:"",teamRoles:[],teamNames:{},teamOther:"",plannedContent:"",periodMatches:[],travelDays:1,people:1,costs:{flights:0,hotel:0,food:0,transport:0,freelancer:0,misc:0},logisticsNote:"",criteria:{sport:5,costBenefit:5,commercial:5}};
+    }
+    function setVal(id,value){document.getElementById(id).value=value??""}
+    function getVal(id){return document.getElementById(id).value}
+    function numberVal(id){return Number(getVal(id)||0)}
+    function renderChecks(containerId,inputName,options,selected){
+      document.getElementById(containerId).innerHTML=options.map(option=>`<label class="check-option"><input type="checkbox" name="${inputName}" value="${escapeHtml(option)}" ${selected.includes(option)?"checked":""}><span>${escapeHtml(option)}</span></label>`).join("");
+    }
+    function renderTeamOptions(selectedRoles,teamNames){
+      const names=teamNames||{};
+      document.getElementById("teamRoles").innerHTML=TEAM_ROLE_OPTIONS.map(role=>{
+        const checked=selectedRoles.includes(role);
+        const value=names[role]||"";
+        return `<label class="team-option ${checked?"":"is-off"}">
+          <input type="checkbox" name="teamRole" value="${escapeHtml(role)}" ${checked?"checked":""} onchange="toggleTeamOption(this)">
+          <span>${escapeHtml(role)}</span>
+          <input type="text" name="teamPerson" data-role="${escapeHtml(role)}" placeholder="Nome da pessoa" value="${escapeHtml(value)}" ${checked?"":"disabled"}>
+        </label>`;
+      }).join("");
+    }
+    function toggleTeamOption(checkbox){
+      const label=checkbox.closest(".team-option");
+      const input=label.querySelector('input[name="teamPerson"]');
+      label.classList.toggle("is-off",!checkbox.checked);
+      input.disabled=!checkbox.checked;
+      if(!checkbox.checked) input.value="";
+    }
+    function openModal(g){
+      g=normalizeGame(g);
+      document.getElementById("modal").classList.add("open");
+      document.getElementById("modalTitle").textContent=g.id&&games.some(item=>item.id===g.id)?"Editar jogo":"Adicionar jogo";
+      setVal("gameId", g.id);
+      ["date","endDate","time","competition","game","city","stadium","phase","coverage","priority","status","people","reason","plannedContent","travelDays","logisticsNote","teamOther"].forEach(id=>setVal(id,g[id]??""));
+      setVal("flights",(g.costs||{}).flights||0);setVal("hotel",(g.costs||{}).hotel||0);setVal("food",(g.costs||{}).food||0);setVal("transport",(g.costs||{}).transport||0);setVal("freelancer",(g.costs||{}).freelancer||0);setVal("misc",(g.costs||{}).misc||0);
+      renderChecks("accountChecks","accountCheck",ACCOUNT_OPTIONS,g.accounts||[]);
+      renderTeamOptions(g.teamRoles||[],g.teamNames||{});renderPeriodMatches(g.periodMatches||[]);document.getElementById("addPeriodMatchBtn").onclick=()=>addPeriodMatchRow();document.getElementById("clearPeriodMatchesBtn").onclick=clearEmptyPeriodMatches;
+      
+      document.getElementById("criteriaFields").innerHTML=Object.keys(SCORE_WEIGHTS).map(k=>`<div><label>${SCORE_LABELS[k]}</label><div class="range-line"><input type="range" min="0" max="10" step="1" id="criteria_${k}" value="${Number((g.criteria||{})[k]||0)}"><div class="range-value" id="value_${k}">${Number((g.criteria||{})[k]||0)}</div></div></div>`).join("");
+      Object.keys(SCORE_WEIGHTS).forEach(k=>{const input=document.getElementById("criteria_"+k);const value=document.getElementById("value_"+k);input.oninput=()=>value.textContent=input.value});
+    }
+    function setMainFieldsUnknown(){["date","time","competition","game","city","stadium","phase"].forEach(id=>setVal(id,"A definir"));showToast("Campos principais marcados como A definir")}
+    function setPlanningUnknown(){setVal("status","a definir");setVal("coverage","a definir");showToast("Status e cobertura marcados como A definir")}
+    function closeModal(){document.getElementById("modal").classList.remove("open")}
+    function closeViewModal(){document.getElementById("viewModal").classList.remove("open")}
+    function viewGame(id){
+      const g=enriched().find(item=>Number(item.id)===Number(id));
+      if(!g)return;
+      document.getElementById("viewContent").innerHTML=gameCard(g);
+      document.getElementById("viewModal").classList.add("open");
+      document.querySelectorAll("#viewContent details").forEach(item=>{item.open=true;expandedDetails.add(`details:${id}`);collapsedDetails.delete(`details:${id}`);});
+    }
+    function editGame(id){closeViewModal();const g=games.find(item=>Number(item.id)===Number(id));if(g)openModal(clone(g))}
+    function duplicateGame(id){const g=games.find(item=>Number(item.id)===Number(id));if(!g)return;const copy=clone(g);copy.id=Math.max(0,...games.map(item=>Number(item.id||0)))+1;copy.game=copy.game+" (cópia)";games.push(copy);saveGames();render();showToast("Jogo duplicado")}
+    function deleteGame(id){const g=games.find(item=>Number(item.id)===Number(id));if(!g)return;if(!confirm("Excluir "+g.game+"?"))return;games=games.filter(item=>Number(item.id)!==Number(id));saveGames();render();showToast("Jogo excluído")}
+    
+    function bulkSelectOptions(type, selected){
+      const sets={
+        status:["a definir","desejado","em análise","aprovado","descartado"],
+        coverage:["a definir","in loco","híbrida","remota"],
+        priority:["alta","média","baixa"]
+      };
+      return sets[type].map(item=>`<option value="${escapeHtml(item)}" ${item===selected?"selected":""}>${escapeHtml(item)}</option>`).join("");
+    }
+
+    function bulkRowTemplate(data={}){
+      const id=`bulk_${Date.now()}_${Math.floor(Math.random()*100000)}`;
+      return `
+        <div class="bulk-row" data-bulk-row>
+          <div class="field">
+            <label>Jogo/evento</label>
+            <input type="text" data-bulk-field="game" placeholder="Mandante x Visitante" value="${escapeHtml(data.game||"")}">
+          </div>
+          <div class="field">
+            <label>Horário</label>
+            <input type="text" data-bulk-field="time" placeholder="A definir" value="${escapeHtml(data.time||"A definir")}">
+          </div>
+          <div class="field">
+            <label>Cidade/UF</label>
+            <input type="text" data-bulk-field="city" placeholder="A definir" value="${escapeHtml(data.city||"A definir")}">
+          </div>
+          <div class="field">
+            <label>Estádio</label>
+            <input type="text" data-bulk-field="stadium" placeholder="A definir" value="${escapeHtml(data.stadium||"A definir")}">
+          </div>
+          <div class="field">
+            <label>Status</label>
+            <select data-bulk-field="status">${bulkSelectOptions("status",data.status||"a definir")}</select>
+          </div>
+          <div class="field">
+            <label>Cobertura</label>
+            <select data-bulk-field="coverage">${bulkSelectOptions("coverage",data.coverage||"a definir")}</select>
+          </div>
+          <div class="field">
+            <label>Prioridade</label>
+            <select data-bulk-field="priority">${bulkSelectOptions("priority",data.priority||"média")}</select>
+          </div>
+          <div class="field">
+            <label>Pessoas</label>
+            <input type="number" min="0" data-bulk-field="people" value="${escapeHtml(data.people??1)}">
+          </div>
+          <button type="button" class="bulk-remove" title="Remover linha" onclick="removeBulkRow(this)">×</button>
+        </div>
+      `;
+    }
+
+    function updateBulkCounter(){
+      const count=document.querySelectorAll("[data-bulk-row]").length;
+      document.getElementById("bulkCounter").textContent=`${count} linha${count===1?"":"s"}`;
+    }
+
+    function addBulkRows(count=1){
+      const container=document.getElementById("bulkRows");
+      let html="";
+      for(let i=0;i<count;i++) html+=bulkRowTemplate();
+      container.insertAdjacentHTML("beforeend",html);
+      updateBulkCounter();
+    }
+
+    function removeBulkRow(btn){
+      const row=btn.closest("[data-bulk-row]");
+      if(row) row.remove();
+      updateBulkCounter();
+    }
+
+    function isBulkRowEmpty(row){
+      const values=["game","time","city","stadium"].map(field=>row.querySelector(`[data-bulk-field="${field}"]`)?.value||"");
+      const people=row.querySelector('[data-bulk-field="people"]')?.value||"";
+      return values.every(v=>isUnknown(v)) && (!people || Number(people)===0);
+    }
+
+    function clearEmptyBulkRows(){
+      document.querySelectorAll("[data-bulk-row]").forEach(row=>{ if(isBulkRowEmpty(row)) row.remove(); });
+      updateBulkCounter();
+      showToast("Linhas vazias removidas");
+    }
+
+    function openBulkModal(){
+      document.getElementById("bulkModal").classList.add("open");
+      setVal("bulkDate","A definir");
+      setVal("bulkCompetition","A definir");
+      setVal("bulkPhase","A definir");
+      renderChecks("bulkAccountChecks","bulkAccountCheck",ACCOUNT_OPTIONS,[]);
+      document.getElementById("bulkRows").innerHTML="";
+      addBulkRows(12);
+    }
+
+    function closeBulkModal(){
+      document.getElementById("bulkModal").classList.remove("open");
+    }
+
+    function readBulkField(row,field){
+      return row.querySelector(`[data-bulk-field="${field}"]`)?.value || "";
+    }
+
+    function makeBulkGame(base,row,nextId){
+      return {
+        id:nextId,
+        date:base.date || "A definir",
+        endDate:"A definir",
+        time:displayValue(readBulkField(row,"time")),
+        competition:base.competition || "A definir",
+        game:displayValue(readBulkField(row,"game")),
+        city:displayValue(readBulkField(row,"city")),
+        stadium:displayValue(readBulkField(row,"stadium")),
+        phase:base.phase || "A definir",
+        accounts:base.accounts,
+        coverage:readBulkField(row,"coverage") || "a definir",
+        priority:readBulkField(row,"priority") || "média",
+        status:readBulkField(row,"status") || "a definir",
+        reason:"",
+        contentPotential:"",
+        teamRoles:[],
+        teamOther:"",
+        plannedContent:"",
+        periodMatches:[],
+        travelDays:1,
+        people:Number(readBulkField(row,"people")||0),
+        costs:{flights:0,hotel:0,food:0,transport:0,freelancer:0,misc:0},
+        logisticsNote:"",
+        criteria:{sport:5,costBenefit:5,commercial:5}
+      };
+    }
+
+    
+    function periodMatchTemplate(data={}){return `<div class="period-row" data-period-row><div><label>Data do jogo</label><input type="text" data-period-field="date" placeholder="DD/MM/AAAA" value="${escapeHtml(data.date||"A definir")}"></div><div><label>Jogo/adversário</label><input type="text" data-period-field="game" placeholder="Brasil x A definir" value="${escapeHtml(data.game||"A definir")}"></div><div><label>Horário</label><input type="text" data-period-field="time" placeholder="A definir" value="${escapeHtml(data.time||"A definir")}"></div><div><label>Cidade/UF</label><input type="text" data-period-field="city" placeholder="A definir" value="${escapeHtml(data.city||"A definir")}"></div><div><label>Estádio</label><input type="text" data-period-field="stadium" placeholder="A definir" value="${escapeHtml(data.stadium||"A definir")}"></div><button type="button" class="period-remove" title="Remover jogo" onclick="removePeriodMatchRow(this)">×</button></div>`}
+    function renderPeriodMatches(matches=[]){document.getElementById("periodMatchesRows").innerHTML=(matches||[]).map(m=>periodMatchTemplate(m)).join("")}
+    function addPeriodMatchRow(data={}){document.getElementById("periodMatchesRows").insertAdjacentHTML("beforeend",periodMatchTemplate(data))}
+    function removePeriodMatchRow(btn){const row=btn.closest("[data-period-row]");if(row)row.remove()}
+    function getPeriodField(row,field){return row.querySelector(`[data-period-field="${field}"]`)?.value||""}
+    function isPeriodRowEmpty(row){return ["date","game","time","city","stadium"].every(field=>isUnknown(getPeriodField(row,field)))}
+    function clearEmptyPeriodMatches(){document.querySelectorAll("[data-period-row]").forEach(row=>{if(isPeriodRowEmpty(row))row.remove()});showToast("Linhas vazias removidas")}
+    function readPeriodMatches(){return [...document.querySelectorAll("[data-period-row]")].filter(row=>!isPeriodRowEmpty(row)).map(row=>({date:displayValue(getPeriodField(row,"date")),game:displayValue(getPeriodField(row,"game")),time:displayValue(getPeriodField(row,"time")),city:displayValue(getPeriodField(row,"city")),stadium:displayValue(getPeriodField(row,"stadium"))}))}
+
+    document.getElementById("gameForm").onsubmit=e=>{
+      e.preventDefault();
+      const id=Number(getVal("gameId"));
+      const selectedAccounts=[...document.querySelectorAll("input[name='accountCheck']:checked")].map(i=>i.value);
+      const selectedRoles=[...document.querySelectorAll("input[name='teamRole']:checked")].map(i=>i.value);
+      const teamNames={};
+      document.querySelectorAll("input[name='teamPerson']").forEach(input=>{
+        if(!input.disabled && input.value.trim()) teamNames[input.dataset.role]=input.value.trim();
+      });
+      const data={id,date:getVal("date"),endDate:getVal("endDate"),time:getVal("time"),competition:getVal("competition"),game:getVal("game"),city:getVal("city"),stadium:getVal("stadium"),phase:getVal("phase"),accounts:selectedAccounts,coverage:getVal("coverage"),priority:getVal("priority"),status:getVal("status"),people:numberVal("people"),reason:getVal("reason"),contentPotential:"",plannedContent:getVal("plannedContent"),periodMatches:readPeriodMatches(),teamRoles:selectedRoles,teamNames,teamOther:getVal("teamOther"),travelDays:numberVal("travelDays"),logisticsNote:getVal("logisticsNote"),costs:{flights:numberVal("flights"),hotel:numberVal("hotel"),food:numberVal("food"),transport:numberVal("transport"),freelancer:numberVal("freelancer"),misc:numberVal("misc")},criteria:{}};
+      Object.keys(SCORE_WEIGHTS).forEach(k=>data.criteria[k]=Number(document.getElementById("criteria_"+k).value||0));
+      const index=games.findIndex(g=>Number(g.id)===id);
+      if(index>=0) games[index]=data; else games.push(data);
+      saveGames();closeModal();render();showToast("Jogo salvo");
+    };
+    
+    document.getElementById("bulkForm").onsubmit=e=>{
+      e.preventDefault();
+
+      const selectedAccounts=[...document.querySelectorAll("input[name='bulkAccountCheck']:checked")].map(i=>i.value);
+      const base={
+        date:displayValue(getVal("bulkDate")),
+        competition:displayValue(getVal("bulkCompetition")),
+        phase:displayValue(getVal("bulkPhase")),
+        accounts:selectedAccounts
+      };
+
+      const rows=[...document.querySelectorAll("[data-bulk-row]")].filter(row=>!isBulkRowEmpty(row));
+      if(!rows.length){
+        alert("Preencha pelo menos uma linha de jogo.");
+        return;
+      }
+
+      let nextId=Math.max(0,...games.map(g=>Number(g.id||0)))+1;
+      const created=rows.map(row=>makeBulkGame(base,row,nextId++));
+      games.push(...created);
+
+      saveGames();
+      closeBulkModal();
+      render();
+      showToast(`${created.length} jogo${created.length===1?"":"s"} adicionado${created.length===1?"":"s"}`);
+    };
+
+    function exportJson(){downloadBlob(new Blob([JSON.stringify(games,null,2)],{type:"application/json;charset=utf-8"}),"planner-brasileiras-2026-dados.json");showToast("JSON exportado")}
+    function importJsonFile(file){const reader=new FileReader();reader.onload=e=>{try{const data=JSON.parse(e.target.result);if(!Array.isArray(data))throw new Error("Formato inválido");games=data.map(normalizeGame);saveGames();render();showToast("JSON importado")}catch(err){alert("Não consegui importar. Verifique se o arquivo é um JSON exportado por este planner.")}};reader.readAsText(file,"UTF-8")}
+    function exportCsv(){
+      const items=enriched();
+      const headers=["Data","Data final","Horário","Contas","Competição","Jogo","Cidade/UF","Estádio","Fase","Cobertura","Prioridade","Status","Score","Pessoas","Dias de viagem","Total passagens","Total hospedagem","Total alimentação","Total transporte","Total freelancer/equipe","Total diversos","Custo total","Equipe necessária","Jogos do período","Justificativa","Conteúdos previstos"];
+      const rows=items.map(g=>[g.date,g.endDate,g.time,accountsText(g),g.competition,g.game,g.city,g.stadium,g.phase,g.coverage,g.priority,g.status,g.score,g.people,g.travelDays,g.costs.flights,g.costs.hotel,g.costs.food,g.costs.transport,g.costs.freelancer,g.costs.misc,g.totalCost,teamText(g),(g.periodMatches||[]).map(m=>`${m.date} ${m.time} - ${m.game} - ${m.city} - ${m.stadium}`).join(" | "),g.reason,g.plannedContent]);
+      const csv=[headers,...rows].map(row=>row.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")).join("\n");
+      downloadBlob(new Blob(["\uFEFF"+csv],{type:"text/csv;charset=utf-8"}),"planner-brasileiras-coberturas-2026.csv");showToast("CSV exportado");
+    }
+    function executiveSummary(){
+      const items=enriched(),s=summary(items),top=[...items].sort((a,b)=>(b.score-a.score)||compareGamesChronologically(a,b)).slice(0,5);
+      const accountLines=ACCOUNT_OPTIONS.map(account=>{const list=items.filter(g=>(g.accounts||[]).includes(account));return `${account}: ${list.length} agenda(s), ${list.filter(g=>g.coverage==="híbrida").length} híbrida(s)`});
+      return ["RESUMO EXECUTIVO - PLANEJAMENTO DE COBERTURAS IN LOCO - JUL/DEZ 2026","",`Total de jogos/eventos mapeados: ${s.totalGames}`,`Coberturas híbridas: ${s.hybrid}`,`Prioridade alta: ${s.high}`,`Cidades/UF envolvidas: ${s.cities}`,`Custo total estimado: ${fmtMoney(s.total)}`,`Custo coberturas híbridas: ${fmtMoney(s.hybridTotal)}`,`Média por cobertura: ${fmtMoney(s.avg)}`,"","Demandas por conta:",...accountLines,"","Top prioridades:",...top.map((g,i)=>`${i+1}. ${g.game} - ${dateRangeText(g)} - ${accountsText(g)} - score ${g.score} - ${g.coverage} - ${fmtMoney(g.totalCost)}`)].join("\n");
+    }
+    function copySummary(){const text=executiveSummary();navigator.clipboard.writeText(text).then(()=>showToast("Resumo copiado")).catch(()=>{const t=document.createElement("textarea");t.value=text;document.body.appendChild(t);t.select();document.execCommand("copy");document.body.removeChild(t);showToast("Resumo copiado")})}
+    function downloadBlob(blob,filename){const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)}
+    function escapeHtml(value){return String(value??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
+    function escapeJs(value){return String(value??"").replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/[\n\r]/g," ")}
+    function showToast(message){const el=document.getElementById("toast");el.textContent=message;el.classList.add("show");setTimeout(()=>el.classList.remove("show"),1800)}
+    document.getElementById("addBtn").onclick=()=>openModal(emptyGame());
+    document.getElementById("bulkBtn").onclick=openBulkModal;
+    document.getElementById("saveBtn").onclick=saveGames;
+    document.getElementById("exportJsonBtn").onclick=exportJson;
+    document.getElementById("importJsonBtn").onclick=()=>document.getElementById("jsonFileInput").click();
+    document.getElementById("jsonFileInput").onchange=e=>{const file=e.target.files[0];if(file)importJsonFile(file);e.target.value=""};
+    document.getElementById("exportCsvBtn").onclick=exportCsv;
+    document.getElementById("copySummaryBtn").onclick=copySummary;
+    document.getElementById("resetBtn").onclick=()=>{if(!confirm("Restaurar os exemplos? Isso apaga os dados salvos neste navegador."))return;games=clone(SAMPLE_GAMES);saveGames();render();showToast("Exemplos restaurados")};
+    document.getElementById("closeModalBtn").onclick=closeModal;
+    document.getElementById("closeBulkModalBtn").onclick=closeBulkModal;
+    document.getElementById("cancelBulkBtn").onclick=closeBulkModal;
+    document.getElementById("bulkModal").onclick=e=>{if(e.target.id==="bulkModal")closeBulkModal()};
+    document.getElementById("addBulkRowBtn").onclick=()=>addBulkRows(1);
+    document.getElementById("addTwelveBulkRowsBtn").onclick=()=>addBulkRows(12);
+    document.getElementById("clearEmptyBulkRowsBtn").onclick=clearEmptyBulkRows;
+    document.getElementById("cancelBtn").onclick=closeModal;
+    document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal()};
+    document.getElementById("closeViewModalBtn").onclick=closeViewModal;
+    document.getElementById("viewModal").onclick=e=>{if(e.target.id==="viewModal")closeViewModal()};
+    render();
+  </script>
+</body>
+</html>
